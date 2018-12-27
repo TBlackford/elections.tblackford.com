@@ -1,0 +1,30 @@
+import request from 'superagent';
+import { handleSuccess, handleError } from '_utils/api';
+
+export const postCountry = info =>
+  request.post('/api/country')
+    .send(info)
+    .then(handleSuccess)
+    .catch(handleError);
+
+export const getCountry = () =>
+  request.get('/api/country')
+    .then(handleSuccess)
+    .catch(handleError);
+
+export const getAllCountries = () =>
+    request.get('/api/country/all')
+      .then(handleSuccess)
+      .catch(handleError);
+
+export const putCountry = info =>
+  request.put('/api/country')
+    .send(info)
+    .then(handleSuccess)
+    .catch(handleError);
+
+export const deleteCountry = info =>
+  request.delete('/api/country')
+    .send(info)
+    .then(handleSuccess)
+    .catch(handleError);

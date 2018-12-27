@@ -1,0 +1,26 @@
+.flexbox-container {
+    display: -webkit-flexbox;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+
+    justify-content: space-evenly;
+    align-content: center;
+}
+@supports (flex-wrap: wrap) {
+    .flexbox-container {
+        display: flex;
+    }
+}
+
+.card {
+    width: 200px;
+    margin: auto;
+}
+
+.card .image img {
+    height: fit-content;
+}
