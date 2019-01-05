@@ -11,6 +11,6 @@ const history = createBrowserHistory();
 const store = configureStore(history);
 
 render(
-  <Root store={store} history={history} />,
-  document.getElementById('app'),
+    <Root store={store} history={history} />,
+    document.getElementById('app'),
 );

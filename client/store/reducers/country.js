@@ -2,6 +2,8 @@ import update from 'immutability-helper';
 import {Map, fromJS} from 'immutable';
 import * as R from 'ramda';
 
+import { LOGOUT_USER } from '_actions/user';
+
 import {
     SET_COUNTRY, SET_ALL_COUNTRY, ADD_COUNTRY, UPDATE_COUNTRY, REMOVE_COUNTRY,
 } from '_actions/country';

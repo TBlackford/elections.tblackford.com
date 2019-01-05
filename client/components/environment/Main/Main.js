@@ -35,7 +35,7 @@ export default function Main(props) {
                     <Route path="/settings" component={SettingsPage} />
                     <Route path="/404" component={LostPage} />
 
-                    <Route path="/:country" component={AppPage} />           
+                    <Route path="/:country" component={AppPage} />          
                 </Switch>
             </div>
             <Footer />
