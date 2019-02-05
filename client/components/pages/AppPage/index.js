@@ -1,12 +1,12 @@
 import R from '_utils/ramda';
 import { connect } from 'react-redux';
-import { attemptGetCountry } from '_thunks/country';
+import { attemptGetSpecificCountry } from '_thunks/country';
 import AppPageContainer from './AppPageContainer';
 
-const mapStateToProps = R.pick(['country']);
+const mapStateToProps = R.pick([]);
 
 const mapDispatchToProps = dispatch => ({
-    getCountry: () => dispatch(attemptGetCountry()),
+    getCountry: country => dispatch(attemptGetSpecificCountry(country)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppPageContainer);

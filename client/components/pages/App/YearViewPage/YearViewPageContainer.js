@@ -5,25 +5,27 @@ import YearViewPage from './YearViewPage';
 export default class YearViewPageContainer extends Component {
     static propTypes = {
         getCountry: PropTypes.func.isRequired,
-        country: PropTypes.array,
     }
 
     state = {
         loading: true,
+        year: {}
     }
 
     componentDidMount() {
         const { getCountry } = this.props;
+        const country = this.props.match.params.country;
+        const year = this.props.match.params.year
 
-        getCountry().then(
-            () => this.setState({ loading: false }),
-            () => console.log("failure")
-        );
+        getCountry({ 
+            country: country, 
+            year: year 
+        }).then(() => this.setState({loading: false}));
     }
 
     render() {
         return (
-            <YearViewPage countries={this.props.country} match={this.props.match} />
+            <YearViewPage year={this.state.year} />
         )        
     }
 }

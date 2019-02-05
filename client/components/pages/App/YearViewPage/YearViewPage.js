@@ -3,22 +3,9 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
 
 export default function YearViewPage(props) {
-    const { countries, match } = props;
+    const { year } = props;
 
-    var findYearOr404 = (match, countries) => {
-        for (var c in countries) {
-            console.log(countries[c]);
-            if (countries[c].year == match.params.year) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    const countryFound = findYearOr404(match, countries);
-
-    if (!countryFound) {
+    if (!year) {
         return (
             <Redirect to="/404" />
         )
@@ -26,8 +13,7 @@ export default function YearViewPage(props) {
 
     return (
         <div>
-
+            <p>Year</p>
         </div>
     )
-
 }

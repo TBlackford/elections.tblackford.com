@@ -5,7 +5,7 @@ import * as R from 'ramda';
 import { LOGOUT_USER } from '_actions/user';
 
 import {
-    SET_COUNTRY, SET_ALL_COUNTRY, ADD_COUNTRY, UPDATE_COUNTRY, REMOVE_COUNTRY,
+    SET_COUNTRY, SET_COUNTRY_YEARS, SET_ALL_COUNTRY, ADD_COUNTRY, UPDATE_COUNTRY, REMOVE_COUNTRY,
 } from '_actions/country';
 
 export default function country(state = [], action) {
@@ -15,6 +15,10 @@ export default function country(state = [], action) {
     switch (action.type) {
         case SET_COUNTRY:
             return update(state, { $set: action.country });
+
+        case SET_COUNTRY_YEARS:
+            return update(state, { $set: action.years });
+
         case SET_ALL_COUNTRY:
             return update(state, { $set: action.country });
         case ADD_COUNTRY:

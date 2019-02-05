@@ -8,8 +8,7 @@ export default function TimelineSection({ country }) {
     return (
         <div className="section timeline-section">
             <div className="columns">
-                <div className="column is-12 text-left">
-                    {/*Here, add in a timeline list*/}                 
+                <div className="column is-12 text-left">           
                     <TimelineList country={country} />
                 </div>
             </div>

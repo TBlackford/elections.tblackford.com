@@ -30,25 +30,7 @@ elections.tblackford.com/app/<country>/i/<year>/<election>/<electorate>/
 */
 
 export default function AppPage(props) {
-    const { countries, match } = props;
-
-    var findCountryOr404 = (match, countries) => {
-        for (var c in countries) {
-            if (countries[c].isoCode.toLowerCase() == match.params.country.toLowerCase()) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    const countryFound = findCountryOr404(match, countries);
-
-    if(!countryFound) {
-        return (
-            <Redirect to="/404" />
-        )
-    }
+    const { match } = props;
 
     return (
         <div className="app-page page">
@@ -66,5 +48,4 @@ export default function AppPage(props) {
 
 AppPage.propTypes = {
     match: PropTypes.shape({}).isRequired,
-    countries: PropTypes.array
 };

@@ -1,6 +1,13 @@
 import request from 'superagent';
 import { handleSuccess, handleError } from '_utils/api';
 
+const foo = (country, year) => {
+    console.log(country);
+    return request.get('/api/country/' + country + '/' + year)
+        .then(handleSuccess)
+        .catch(handleError)
+}
+
 export const postCountry = info =>
     request.post('/api/country')
         .send(info)
@@ -12,7 +19,7 @@ export const getCountry = () =>
         .then(handleSuccess)
         .catch(handleError);
 
-export const getAllCountries = () =>
+export const getAllCountry = () =>
     request.get('/api/country/all')
         .then(handleSuccess)
         .catch(handleError);
@@ -21,8 +28,8 @@ export const getSpecificCountry = (country) =>
     request.get('/api/country/' + country)
         .then(handleSuccess)
         .catch(handleError);
-        
-export const getCountryYear = (country, year) =>
+
+export const getCountryYear = (country, year) => 
     request.get('/api/country/' + country + '/' + year)
         .then(handleSuccess)
         .catch(handleError);

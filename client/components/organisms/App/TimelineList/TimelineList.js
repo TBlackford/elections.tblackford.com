@@ -9,6 +9,8 @@ import SeatChart from '_molecules/SeatChart';
 export default function TimelineList(props) {
     const { elections } = props;
 
+    console.log(elections);
+
     return (
         <div className="timelinelist" style={{ width: "100%" }}>
             {
@@ -21,7 +23,7 @@ export default function TimelineList(props) {
                                 var vsb_popvote = <div />
                             }
                         } catch {
-
+                            // Don't do this
                         }
 
                         return (

@@ -1,8 +1,8 @@
 import { snakeToCamelCase } from 'json-style-converter/es5';
 import R from '_utils/ramda';
 
-import { getCountry, getAllCountry, getSpecificCountry, postCountry, putCountry, deleteCountry } from '_api/country';
-import { setCountry, setAllCountry, addCountry, updateCountry, removeCountry } from '_actions/country';
+import { getCountry, getAllCountry, getSpecificCountry, getCountryYear, getCountryYearElection, putCountry, deleteCountry } from '_api/country';
+import { setCountry, setSpecificCountry, setCountryYears, setAllCountry, addCountry, updateCountry, removeCountry } from '_actions/country';
 
 import { dispatchError } from '_utils/api';
 
@@ -28,8 +28,36 @@ export const attemptGetAllCountry = () => dispatch =>
         })
         .catch(dispatchError(dispatch));
 
-export const attemptGetSpecificCountry = ({country}) => dispatch => {
+export const attemptGetSpecificCountry = country => dispatch => 
     getSpecificCountry(country)
+        .then(data => {
+            const country = R.map(c =>
+                R.omit(['Id'], R.assoc('id', c._id, snakeToCamelCase(c))), data.country);
+
+            console.log(data);
+            console.log(country);
+
+            dispatch(setSpecificCountry(country.name, country.isoCode, country.continent, country.flagUrl, country.elections));
+            return data.country;
+        })
+        .catch(dispatchError(dispatch));
+
+export const attemptGetCountryYear = ({country, year}) => dispatch => 
+    getCountryYear(country, year)
+        .then(data => {            
+            const years = R.map(c => 
+                R.omit(['Id'], R.assoc('id', c._id, snakeToCamelCase(c))), data.years     
+            );
+
+            console.log(years);
+
+            dispatch(setCountryYears(years));
+            return data;
+        })
+        .catch(dispatchError(dispatch));
+
+export const attemptGetCountryYearElection = ({country, year, election}) => dispatch => {
+    getCountryYearElection(country, year, election)
         .then(data => {
             const country = R.map(c =>
                 R.omit(['Id'], R.assoc('id', c._id, snakeToCamelCase(c))), data.country);
