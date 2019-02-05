@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router';
 
 import TimelinePage from '_pages/App/TimelinePage';
+import YearViewPage from '_pages/App/YearViewPage';
 
 /*
 
@@ -29,17 +30,33 @@ elections.tblackford.com/app/<country>/i/<year>/<election>/<electorate>/
 */
 
 export default function AppPage(props) {
-    const { location, match } = props;
-    console.log(match)
+    const { countries, match } = props;
+
+    var findCountryOr404 = (match, countries) => {
+        for (var c in countries) {
+            if (countries[c].isoCode.toLowerCase() == match.params.country.toLowerCase()) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    const countryFound = findCountryOr404(match, countries);
+
+    if(!countryFound) {
+        return (
+            <Redirect to="/404" />
+        )
+    }
+
     return (
         <div className="app-page page">
             <div className="section">
                 <div className="container">
                     <Switch>
-                        <Route path={`${match.path}/v/timeline`} component={TimelinePage} />   
-
-
-                        <Route path="*" component={() => <p>Not found</p>} />              
+                        <Route path={`${match.path}/v/timeline`} component={TimelinePage} />         
+                        <Route path={`${match.path}/v/:year`} component={YearViewPage} />      
                     </Switch>
                 </div>
             </div>
@@ -48,8 +65,6 @@ export default function AppPage(props) {
 }
 
 AppPage.propTypes = {
-    location: PropTypes.shape({
-        pathname: PropTypes.string.isRequired,
-    }).isRequired,
-    //country: PropTypes.string
+    match: PropTypes.shape({}).isRequired,
+    countries: PropTypes.array
 };

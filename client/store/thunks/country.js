@@ -1,7 +1,7 @@
 import { snakeToCamelCase } from 'json-style-converter/es5';
 import R from '_utils/ramda';
 
-import { getCountry, getAllCountry, postCountry, putCountry, deleteCountry } from '_api/country';
+import { getCountry, getAllCountry, getSpecificCountry, postCountry, putCountry, deleteCountry } from '_api/country';
 import { setCountry, setAllCountry, addCountry, updateCountry, removeCountry } from '_actions/country';
 
 import { dispatchError } from '_utils/api';
@@ -27,6 +27,18 @@ export const attemptGetAllCountry = () => dispatch =>
             return data.country;
         })
         .catch(dispatchError(dispatch));
+
+export const attemptGetSpecificCountry = ({country}) => dispatch => {
+    getSpecificCountry(country)
+        .then(data => {
+            const country = R.map(c =>
+                R.omit(['Id'], R.assoc('id', c._id, snakeToCamelCase(c))), data.country);
+
+            dispatch(setAllCountry(country));
+            return data.country;
+        })
+        .catch(dispatchError(dispatch));
+}
 
 export const attemptAddCountry = ({ id, name, iso_code, continent, flag_url }) => dispatch =>
     postCountry({ id, name, iso_code, continent, flag_url })

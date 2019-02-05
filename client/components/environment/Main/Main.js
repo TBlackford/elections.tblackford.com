@@ -29,7 +29,7 @@ export default function Main(props) {
                     <Route path="/login" component={LoginPage} />
                     <Route path="/register" component={RegisterPage} />
 
-                    <Route path="/home" component={HomePage} />
+                    <Route path="/home" component={CountryListPage} />
                     <Route path="/todo" component={TodoPage} />
                     <Route path="/countrylist" component={CountryListPage} />
                     <Route path="/settings" component={SettingsPage} />

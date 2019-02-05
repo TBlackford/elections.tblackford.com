@@ -2,11 +2,12 @@ import React from 'react';
 
 import TimelineSection from '_templates/App/TimelineSection';
 
-export default function Timeline() {
+export default function Timeline(props) {
+    const { country } = props;
+
     return ( 
         <div className="timeline-page page">
-            This is a timeline.
-            <TimelineSection />
+            <TimelineSection country={country}/>
         </div>
     );
 }
