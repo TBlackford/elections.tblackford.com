@@ -20,7 +20,12 @@ export default class YearViewPageContainer extends Component {
         getCountry({ 
             country: country, 
             year: year 
-        }).then(() => this.setState({loading: false}));
+        }).then(
+            (years) => {
+                this.setState({loading: false, year: years});
+            },
+            () => console.log("Failure")
+        ).catch(() => console.log("Failure"));
     }
 
     render() {

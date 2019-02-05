@@ -46,10 +46,10 @@ export const attemptGetCountryYear = ({country, year}) => dispatch =>
                 R.omit(['Id'], R.assoc('id', c._id, snakeToCamelCase(c))), data.years     
             );
 
-            console.log(years);
+            console.log(data);
 
             dispatch(setCountryYears(years));
-            return data;
+            return data.years;
         })
         .catch(dispatchError(dispatch));
 
