@@ -7,11 +7,57 @@ import ResultsBar from '_molecules/App/ResultsBar';
 import SeatChart from '_molecules/SeatChart';
 
 export default function TimelineList(props) {
-    const { elections } = props;
+    var { country, elections } = props;  
+    var type;
 
-    console.log(elections);
+    if(Object.keys(elections).length == 1) {
+        type = Object.keys(elections)[0];
+        elections = elections[Object.keys(elections)[0]];
+    }
 
     return (
+        <div className="timelinelist">
+            <div className="tabs is-centered">
+                <ul>
+                    <li className="is-active"><a>Simple</a></li>
+                    <li><a>Detailed</a></li>
+                </ul>
+            </div>
+            {
+                elections.map(
+                    election => {
+                        type = election.type || type;
+                        return (
+                            <div className="box has-text-centered">
+                                <b>
+                                    <a href={"/" + country.isoCode.toLowerCase() + "/v/" + election.year}>{election.year}</a>- {type}                                     
+                                </b>
+                                <div className="column is-12">
+                                    <ResultsBar
+                                        key={election.year}
+                                        parties={election.totals}
+                                        showName={true} />
+                                </div>
+                            </div>
+                        )
+                    }
+                )
+            }
+        </div>
+    );
+
+    return(
+        <div className="timelinelist">
+            <div className="tabs is-centered">
+                <ul>
+                    <li className="is-active"><a>Simple</a></li>
+                    <li><a>Detailed</a></li>
+                </ul>
+            </div>
+        </div>
+    )
+
+    /*return (
         <div className="timelinelist" style={{ width: "100%" }}>
             {
                 elections.map(
@@ -51,7 +97,7 @@ export default function TimelineList(props) {
                 )
             }
         </div>
-    );
+    );//*/
 }
 
 TimelineList.propTypes = {

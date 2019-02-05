@@ -31,7 +31,7 @@ export default class TimelinePageContainer extends Component {
         }
 
         return !this.state.loading && (
-            <TimelinePage country={country}/>
+            <TimelinePage country={country} />
         );
     }
 }

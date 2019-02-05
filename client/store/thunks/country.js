@@ -34,9 +34,6 @@ export const attemptGetSpecificCountry = country => dispatch =>
             const country = R.map(c =>
                 R.omit(['Id'], R.assoc('id', c._id, snakeToCamelCase(c))), data.country);
 
-            console.log(data);
-            console.log(country);
-
             dispatch(setSpecificCountry(country.name, country.isoCode, country.continent, country.flagUrl, country.elections));
             return data.country;
         })

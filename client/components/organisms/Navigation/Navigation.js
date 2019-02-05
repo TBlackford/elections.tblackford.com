@@ -61,12 +61,12 @@ export default function Navigation(props) {
                 <div className="navbar-brand">
                     <Link to={auth ? '/home' : '/'} className="navbar-item" aria-label="main navigation">
                         <h3 className="title is-3 logo">
-                            MERN Boilerplate
+                            Election Histories
                         </h3>
                     </Link>
                     <Link to="/countrylist" className="navbar-item is-hidden-desktop">
                         <h6 className="title is-6">
-                            Country List
+                            Countries
                         </h6>
                     </Link>
                     <div className="navbar-brand-right">

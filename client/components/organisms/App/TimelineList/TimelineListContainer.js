@@ -9,8 +9,15 @@ export default class TimelineListContainer extends Component {
     }
 
     render() {
+        const country = {
+            name: this.props.country.name,
+            isoCode: this.props.country.isoCode,
+            continent: this.props.country.continent,
+            flagUrl: this.props.country.flagUrl,
+        }
+
         return (
-            <TimelineList elections={this.props.country.elections} />
+            <TimelineList elections={this.props.country.elections} country={country} />
         )
     }
 }

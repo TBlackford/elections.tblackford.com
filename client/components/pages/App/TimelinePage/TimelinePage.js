@@ -7,7 +7,7 @@ export default function Timeline(props) {
 
     return ( 
         <div className="timeline-page page">
-            <TimelineSection country={country}/>
+            <TimelineSection country={country} />
         </div>
     );
 }
