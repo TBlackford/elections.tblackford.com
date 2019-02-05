@@ -5,7 +5,7 @@ import CountryCard from '_molecules/CountryCard';
 
 export default function CountryList({ country }) {
     return (
-        <ul className="country-list columns box flexbox-container">
+        <ul className="country-list columns flexbox-container">
             {R.reverse(country).map(c => <CountryCard key={c.id} {...c} />)}
         </ul>
     );

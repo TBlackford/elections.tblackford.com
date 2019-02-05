@@ -49,6 +49,7 @@ module.exports = {
     contentBase: './dist',
     historyApiFallback: true,
     inline: true,
+    port: 8080
   },
   entry: [
     './client/styles/index.scss',

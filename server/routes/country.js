@@ -1,6 +1,7 @@
 const express = require('express');
 const { requireAuth } = require('./middleware');
 const { Country } = require('../database/schemas');
+const R = require('ramda');
 
 const router     = express.Router();
 
@@ -22,6 +23,66 @@ router.get('/all', (req, res) => {
             res.status(400).send({ message: 'Get country failed', err });
         } else {
             res.send({ message: 'Country retrieved successfully', country });
+        }
+    });
+});
+
+router.get('/:country', (req, res) => {
+    Country.findOne({ isoCode: req.params.country.toUpperCase() }, { __v: 0 }, (err, country) => {
+        if (err) {
+            res.status(400).send({ message: 'Get country failed', err });
+        } else {
+            res.send({ message: 'Country retrieved successfully', country });
+        }
+    });
+});
+
+router.get('/:country/:year', (req, res) => {
+    Country.findOne({ isoCode: req.params.country.toUpperCase() }, { __v: 0 }, (err, country) => {
+        if (err) {
+            res.status(400).send({ message: 'Get country failed', err });
+        } else {
+            let years = {};
+
+            countryObj = country.toObject();
+
+            for(election in countryObj.elections) {
+                for (var i = 0; i < countryObj.elections[election].length; i++) {
+                    if (countryObj.elections[election][i].year == req.params.year)
+                        years[election] = countryObj.elections[election][i];
+                }
+            }
+
+            if (R.isEmpty(years)) {
+                res.send({ message: 'No years for that country' });
+            } else {
+                res.send({ message: 'Country retrieved successfully', years });
+            }            
+        }
+    });
+});
+
+router.get('/:country/:year/:election', (req, res) => {
+    Country.findOne({ isoCode: req.params.country.toUpperCase() }, { __v: 0 }, (err, country) => {
+        if (err) {
+            res.status(400).send({ message: 'Get country failed', err });
+        } else {
+            let years = {};
+
+            countryObj = country.toObject();
+
+            for (election in countryObj.elections) {
+                for (var i = 0; i < countryObj.elections[election].length; i++) {
+                    if (countryObj.elections[election][i].year == req.params.year)
+                        years[election] = countryObj.elections[election][i];
+                }
+            }
+
+            if (R.isEmpty(years)) {
+                res.send({ message: 'No years for that country' });
+            } else {
+                res.send({ message: 'Country retrieved successfully', years });
+            }
         }
     });
 });

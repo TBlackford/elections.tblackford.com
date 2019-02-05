@@ -21,8 +21,6 @@ export default function country(state = [], action) {
             return update(state, updatedAtIndex);
         case REMOVE_COUNTRY:
             return update(state, { $splice: [[index, 1]] });
-        case LOGOUT_USER:
-            return [];
         default:
             return state;
     }

@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import AppPage from './AppPage';
+import YearViewPage from './YearViewPage';
 
-export default class AppPageContainer extends Component {
+export default class YearViewPageContainer extends Component {
     static propTypes = {
-        location: PropTypes.shape({
-            pathname: PropTypes.string.isRequired,
-        }).isRequired,
         getCountry: PropTypes.func.isRequired,
+        country: PropTypes.array,
     }
 
     state = {
@@ -21,11 +19,11 @@ export default class AppPageContainer extends Component {
             () => this.setState({ loading: false }),
             () => console.log("failure")
         );
-    }    
+    }
 
-    render() {      
-        return !this.state.loading && (
-            <AppPage match={this.props.match} countries={this.props.country} />
-        )
+    render() {
+        return (
+            <YearViewPage countries={this.props.country} match={this.props.match} />
+        )        
     }
 }

@@ -6,9 +6,12 @@ const { Schema } = mongoose;
 
 const countrySchema = new Schema({
     name: { type: String },
-    iso_code: { type: String },
+    isoCode: { type: String },
     continent: { type: String },
-    flag_url: { type: String },
+    flagUrl: { type: String },
+
+    // You're on your own, kiddo
+    elections: {},
 });
 
 countrySchema.plugin(immutablePlugin);
