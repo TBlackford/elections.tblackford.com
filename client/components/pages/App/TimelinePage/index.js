@@ -6,8 +6,7 @@ import TimelinePageContainer from './TimelinePageContainer';
 const mapStateToProps = R.pick(['country']);
 
 const mapDispatchToProps = dispatch => ({
-    getCountry: () => dispatch(attemptGetCountry()),
-    getSpecificCountry: country => dispatch(attemptGetSpecificCountry(country)),
+    getCountry: country => dispatch(attemptGetSpecificCountry(country)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TimelinePageContainer);

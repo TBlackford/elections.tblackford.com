@@ -2,7 +2,7 @@
   min-width: 20rem;
   padding: .5rem 0;
   position: absolute;
-  right: .75rem;
+  left: .75rem;
   top: 4rem;
 
   .dropdown-list {
@@ -31,6 +31,14 @@
       background-color: $mern-primary;
       color: $white;
       cursor: pointer;
+    }
+
+    .country-dropdown-flag {
+      width: 30px;
+    }
+
+    hr.country-dropdown-hr {
+      margin: .5rem 0;
     }
   }
 

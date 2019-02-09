@@ -20,8 +20,6 @@ export default function YearViewPage(props) {
         type = Object.keys(year)[0];
         year = year[Object.keys(year)[0]];
 
-        console.log(year.totals);
-
         try {
             if(year.totals[0].votes !== undefined) {
                 var vsb_popvote = <VoteSummaryBars key={year.year} parties={year.totals} item={"votes"} title={"Popular Vote"} />

@@ -13,16 +13,19 @@ export default function VoteSummaryBars(props) {
             <br />
             {
                 R.reverse(totals).map(total => {
-                    return (
+                    return percentages[total.name][item] != undefined && (
                         <div key={total.name + total.votes + total.seats} className="columns">
                             <div className="column is-2">
                                 <p>{total.name}</p>
                             </div>
-                            <div className="column is-9">
+                            <div className="column is-8">
                                 <div style={{ height: "19px", width: percentages[total.name][item], backgroundColor: total.colour}} />
                             </div>
                             <div className="column is-1">
                                 <p>{percentages[total.name][item]}</p>
+                            </div>
+                            <div className="column is-1">
+                                <p>{total.votes}</p>
                             </div>
                         </div>  
                     );

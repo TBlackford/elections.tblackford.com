@@ -10,28 +10,23 @@ export default class TimelinePageContainer extends Component {
 
     state = {
         loading: true,
+        country: {}
     }
 
     componentDidMount() {
         const { getCountry } = this.props;
 
-        getCountry().then(
-            () => this.setState({ loading: false }),
+        getCountry(this.props.match.params.country).then(
+            (country) => this.setState({ loading: false, country: country }),
             () => console.log("failure")
         );
     }
 
     render() {
-        var country;
-
-        for (var i = 0; i < this.props.country.length; i++) {
-            if (this.props.country[i].isoCode.toLowerCase() == this.props.match.params.country.toLowerCase()) {
-                country = this.props.country[i];
-            }
-        }
+        console.log(this.state.country);
 
         return !this.state.loading && (
-            <TimelinePage country={country} />
+            <TimelinePage country={this.state.country} />
         );
     }
 }

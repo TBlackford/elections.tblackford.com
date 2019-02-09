@@ -15,6 +15,8 @@ export default function TimelineList(props) {
         elections = elections[Object.keys(elections)[0]];
     }
 
+    console.log(Object.keys(elections));
+
     return (
         <div className="timelinelist">
             <div className="tabs is-centered">
@@ -24,24 +26,22 @@ export default function TimelineList(props) {
                 </ul>
             </div>
             {
-                elections.map(
-                    election => {
-                        type = election.type || type;
-                        return (
-                            <div className="box has-text-centered">
-                                <b>
-                                    <a href={"/" + country.isoCode.toLowerCase() + "/v/" + election.year}>{election.year}</a>- {type}                                     
-                                </b>
-                                <div className="column is-12">
-                                    <ResultsBar
-                                        key={election.year}
-                                        parties={election.totals}
-                                        showName={true} />
-                                </div>
+                elections.map(election => {
+                    type = election.type || type;
+                    return (
+                        <div className="box has-text-centered">
+                            <b>
+                                <a href={"/" + country.isoCode.toLowerCase() + "/v/" + election.year}>{election.year}</a> - {type}                                     
+                            </b>
+                            <div className="column is-12">
+                                <ResultsBar
+                                    key={election.year}
+                                    parties={election.totals}
+                                    showName={true} />
                             </div>
-                        )
-                    }
-                )
+                        </div>
+                    )
+                })
             }
         </div>
     );

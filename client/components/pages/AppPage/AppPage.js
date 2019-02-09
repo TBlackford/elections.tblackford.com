@@ -37,6 +37,7 @@ export default function AppPage(props) {
             <div className="section">
                 <div className="container">
                     <Switch>
+                        {/* The vote routes */}
                         <Route path={`${match.path}/v/timeline`} component={TimelinePage} />         
                         <Route path={`${match.path}/v/:year`} component={YearViewPage} />      
                     </Switch>

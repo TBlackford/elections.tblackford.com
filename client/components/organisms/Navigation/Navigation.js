@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import R from '_utils/ramda';
 import UserDropdown from '_molecules/UserDropdown';
+import CountryDropdown from '_molecules/CountryDropdown';
 import Button from '_atoms/Button';
 
 export default function Navigation(props) {
@@ -64,19 +65,18 @@ export default function Navigation(props) {
                             Election Histories
                         </h3>
                     </Link>
-                    <Link to="/countrylist" className="navbar-item is-hidden-desktop">
+                    <Link 
+                        to="/countrylist"
+                        className="navbar-item is-hidden-desktop"
+                        onClick={toggleUserDropdown}
+                        onKeyPress={toggleUserDropdown}
+                        onMouseEnter={toggleUserDropdown}   
+                    >
                         <h6 className="title is-6">
                             Countries
                         </h6>
                     </Link>
                     <div className="navbar-brand-right">
-                        {!auth && (
-                            <Link to="/login" className="navbar-item is-hidden-desktop">
-                                <h6 className="title is-6">
-                                    Login
-                                </h6>
-                            </Link>
-                        )}
                         {!auth && (
                             <Link to="/register" className="navbar-item is-hidden-desktop">
                                 <Button label="Sign Up" type="success" />
@@ -106,7 +106,13 @@ export default function Navigation(props) {
                                     Home
                                 </h6>
                             </Link>
-                            <Link to="/countrylist" className={countryItemClasses}>
+                            <Link 
+                                to="/countrylist"
+                                className={countryItemClasses}
+                                onClick={toggleUserDropdown}
+                                onKeyPress={toggleUserDropdown}
+                                onMouseEnter={toggleUserDropdown}                                
+                            >
                                 <h6 className="title is-6">
                                     Country List
                                 </h6>
@@ -124,7 +130,13 @@ export default function Navigation(props) {
                         </div>
                     ) : (
                         <div className="navbar-start">
-                            <Link to="/countrylist" className={countryItemClasses}>
+                            <Link 
+                                to="/countrylist"
+                                className={countryItemClasses}
+                                onClick={toggleUserDropdown}
+                                onKeyPress={toggleUserDropdown}
+                                onMouseEnter={toggleUserDropdown}                                
+                            >
                                 <h6 className="title is-6">
                                     Country List
                                 </h6>
@@ -143,18 +155,10 @@ export default function Navigation(props) {
                             </div>
                     ) : (
                         <div className="navbar-end">
-                            <Link to="/login" className="navbar-item">
-                                <h6 className="title is-6">
-                                    Login
-                                </h6>
-                            </Link>
-                            <Link to="/register" className="navbar-item">
-                                <Button label="Sign Up" type="success" />
-                            </Link>
                         </div>
                     )}                    
                 </div>
-                <UserDropdown open={userDropdownOpen} closeDropdown={closeUserDropdown} />
+                <CountryDropdown open={userDropdownOpen} closeDropdown={closeUserDropdown} />
             </div>
         </nav>
     );

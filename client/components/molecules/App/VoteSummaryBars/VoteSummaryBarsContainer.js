@@ -15,7 +15,7 @@ export default class VoteSummaryBarsContainer extends Component {
     }
 
     componentDidMount = () => {
-        this.setState({ parties: this.props.parties.sort(this.dynamicSort("seats"))})
+        this.setState({ parties: this.props.parties.sort(this.dynamicSort("votes"))})
     }
 
     sum = (key) => {
@@ -46,12 +46,20 @@ export default class VoteSummaryBarsContainer extends Component {
             var votesPer = partyVotes / totalVotes * 100;
 
             seatsPer = seatsPer.toFixed(2).toString() + "%";
-            votesPer = votesPer.toFixed(2).toString() + "%";
-
-            percentages[parties[party].name] = {
-                votes: votesPer,
-                seats: seatsPer
+            votesPer = votesPer.toFixed(2).toString() + "%"; 
+            
+            if(seatsPer != "0.00%") {
+                percentages[parties[party].name] = {
+                    votes: votesPer,
+                    seats: seatsPer
+                }
+            } else {
+                percentages[parties[party].name] = {
+                    votes: votesPer,
+                }
             }
+
+            
         }
 
         return percentages;
@@ -64,11 +72,21 @@ export default class VoteSummaryBarsContainer extends Component {
             property = property.substr(1);
         }
         return function (a, b) {
+            a[property] = parseInt(String(a[property]).replace(/,/g, ''));
+            b[property] = parseInt(String(b[property]).replace(/,/g, ''));
             try {
                 var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
             } catch {
                 return result * sortOrder;
             }
+
+            function numberWithCommas(x) {
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+
+            a[property] = numberWithCommas(a[property]);
+            b[property] = numberWithCommas(b[property]);
+
             return result * sortOrder;
         }
     }
