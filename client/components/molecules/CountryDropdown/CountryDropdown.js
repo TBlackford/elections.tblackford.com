@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import R from '_utils/ramda';
 
+// For the arrow
+import 'font-awesome/css/font-awesome.min.css';
+
 export default class CountryDropdown extends Component {
     static propTypes = {
         open: PropTypes.bool.isRequired,
         closeDropdown: PropTypes.func.isRequired,
         getCountry: PropTypes.func.isRequired,
-        country: PropTypes.array
+        country: PropTypes.any
     };
 
     constructor(props) {
@@ -17,7 +20,7 @@ export default class CountryDropdown extends Component {
     }
 
     state = {
-        loading: true
+        countries: []
     }
 
     componentDidMount() {
@@ -28,10 +31,10 @@ export default class CountryDropdown extends Component {
 
         if(country.length == 0) {
             getCountry().then(
-                () => this.setState({loading: false}),
-                (err) => console.log(err)
-            )
-        }
+                (countries) => this.setState({countries: countries}),
+                () => console.log("Error")
+            );
+        }        
     }
 
     componentWillUnmount() {
@@ -42,24 +45,40 @@ export default class CountryDropdown extends Component {
     dropdownListener = e => !e.path.includes(this.dropdown) && this.props.closeDropdown();
 
     render() {
-        const { closeDropdown, open, getCountry, country } = this.props;
+        const { closeDropdown, open } = this.props;
+        const { countries } = this.state;
 
         return open && (
             <div className="dropdown box" ref={el => { this.dropdown = el; }}>
                 <ul className="dropdown-list">
+                    <li className="dropdown-item has-text-centered">
+                        <Link 
+                            to="/countrylist"
+                        >
+                            List of Countries
+                        </Link>
+                    </li>
+                    <hr />
                     {
-                        country.map(country => {
+                        countries.map(country => {
                             var iso = country.isoCode;
                             return(                            
                                 <li key={country.name} className="dropdown-item">
                                     <Link to={"/" + iso.toLowerCase() + "/v/timeline"} onClick={closeDropdown}>
-                                        <div className="columns is-flex-desktop center-align ">
-                                            <div className="column is-two-thirds has-text-centered">
+                                        <div className="columns is-flex-desktop center-align">
+                                            <div className="column is-6 has-text-centered">
                                                 {country.name}
                                             </div>                                              
-                                            <div className="column is-one-third">
-                                                <img src={"/images/" + country.flagUrl} alt={"Flag of " + country.name} />
-                                            </div>
+                                            <div className="levels column">
+                                                <div className="level-item is-four-fifths">
+                                                    <img src={"/images/" + country.flagUrl} alt={"Flag of " + country.name} />                                                    
+                                                </div>
+                                            </div>         
+                                            <div className="column is-2 center-align ">
+                                                <ul className="fa fa-angle-right">      
+                                                    {/*TODO: add in the types of elections here*/}                                              
+                                                </ul>
+                                            </div>                                    
                                         </div>                                      
                                     </Link>
                                 </li>

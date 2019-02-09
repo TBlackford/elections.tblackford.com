@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import * as R from 'ramda';
 
 import VoteSummaryBars from '_molecules/App/VoteSummaryBars';
@@ -15,8 +16,6 @@ export default function TimelineList(props) {
         elections = elections[Object.keys(elections)[0]];
     }
 
-    console.log(Object.keys(elections));
-
     return (
         <div className="timelinelist">
             <div className="tabs is-centered">
@@ -31,7 +30,7 @@ export default function TimelineList(props) {
                     return (
                         <div className="box has-text-centered">
                             <b>
-                                <a href={"/" + country.isoCode.toLowerCase() + "/v/" + election.year}>{election.year}</a> - {type}                                     
+                                <Link to={"/" + country.isoCode.toLowerCase() + "/v/" + election.year}>{election.year}</Link> - {type}                                     
                             </b>
                             <div className="column is-12">
                                 <ResultsBar

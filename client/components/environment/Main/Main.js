@@ -13,6 +13,9 @@ import LostPage from '_pages/LostPage';
 import CountryListPage from '_pages/CountryListPage';
 import AppPage from '_pages/AppPage';
 
+import TimelinePage from '_pages/App/TimelinePage';
+import YearViewPage from '_pages/App/YearViewPage';
+
 import Navigation from '_organisms/Navigation';
 import Footer from '_organisms/Footer';
 
@@ -34,6 +37,11 @@ export default function Main(props) {
                     <Route path="/countrylist" component={CountryListPage} />
                     <Route path="/settings" component={SettingsPage} />
                     <Route path="/404" component={LostPage} />
+
+                    {/*App Stuff*/}     
+
+                    <Route path="/:country/v/timeline" component={TimelinePage} />         
+                    <Route path="/:country/v/:year" component={YearViewPage} />   
 
                     <Route path="/:country" component={AppPage} />          
                 </Switch>

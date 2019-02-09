@@ -5,7 +5,7 @@ import TimelinePage from './TimelinePage';
 export default class TimelinePageContainer extends Component {
     static propTypes = {
         getCountry: PropTypes.func.isRequired,
-        country: PropTypes.array,
+        country: PropTypes.any,
     }
 
     state = {
@@ -13,18 +13,27 @@ export default class TimelinePageContainer extends Component {
         country: {}
     }
 
-    componentDidMount() {
+    setCountry(country) {
         const { getCountry } = this.props;
 
-        getCountry(this.props.match.params.country).then(
+        getCountry(country).then(
             (country) => this.setState({ loading: false, country: country }),
             () => console.log("failure")
         );
     }
 
-    render() {
-        console.log(this.state.country);
+    componentDidMount() {     
+        this.setCountry(this.props.match.params.country);
+    }
 
+    componentWillReceiveProps(nextProps) {
+        // You don't have to do this check first, but it can help prevent an unneeded render
+        if(nextProps.match.params.country != this.state.country.name) {
+            this.setCountry(nextProps.match.params.country);
+        }
+    }
+
+    render() {
         return !this.state.loading && (
             <TimelinePage country={this.state.country} />
         );

@@ -20,21 +20,11 @@ export default function YearViewPage(props) {
         type = Object.keys(year)[0];
         year = year[Object.keys(year)[0]];
 
-        try {
-            if(year.totals[0].votes !== undefined) {
-                var vsb_popvote = <VoteSummaryBars key={year.year} parties={year.totals} item={"votes"} title={"Popular Vote"} />
-            }
-        } catch {
-            var vsb_popvote = <div />
-        }
-
         return (
             <div className="box has-text-centered">
                 <b>{year.year} - {year.type || type}</b>
                 <div className="column is-12" style={{ display: "flex" }}>
                     <div className="column is-8">
-                        {vsb_popvote}
-                        <VoteSummaryBars key={year.year} parties={year.totals} item={"seats"} title={"Seat Percentage"} />
                     </div>
                     <div className="column is-4" style={{ verticalAlign: "middle"}}>
                         <SeatChart key={year.year} parties={year.totals} />

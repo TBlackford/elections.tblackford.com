@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import ReactImageFallback from "react-image-fallback";
 
 const tryRequire = (path) => {
@@ -15,7 +16,7 @@ export default function CountryCard(props) {
         id, name, isoCode, continent, flagUrl
     } = props;
 
-    var ref = "/" + isoCode.toLowerCase() + '/v/timeline';
+    var ref = "/" + isoCode.toLowerCase() + "/v/timeline";
     var img_src = '/images/' + flagUrl;
 
     return (
@@ -24,20 +25,20 @@ export default function CountryCard(props) {
             <div className="card">
                 <div className="card-image">
                     <figure className="image">
-                        <a href={ref}>
+                        <Link to={ref}>
                             <ReactImageFallback 
                                 src={img_src}
                                 initialImage='/images/loading.svg'
                                 fallbackImage='https://via.placeholder.com/200x150.svg?text=Flag'
                                 alt={"Flag of " + name}
                             />
-                        </a>
+                        </Link>
                     </figure>
                 </div>
                 <div className="card-content">
                     <div className="media">
                         <div className="media-content">
-                            <p className="title is-4"><a href={ref}>{name}</a></p>
+                            <p className="title is-4"><Link to={ref}>{name}</Link></p>
                             <p className="subtitle is-6">{continent}</p>
                         </div>
                     </div>

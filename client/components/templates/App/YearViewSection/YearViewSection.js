@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 
-export default function TimelineSection({ country }) {
+export default function YearViewSection({ country }) {
     console.log(country);
     return(
         <div className="section yearview-section">

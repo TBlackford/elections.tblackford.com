@@ -15,7 +15,15 @@ export default class VoteSummaryBarsContainer extends Component {
     }
 
     componentDidMount = () => {
-        this.setState({ parties: this.props.parties.sort(this.dynamicSort("votes"))})
+        this.setState({ 
+            parties: this.props.parties
+        });
+
+        if(this.props.parties[0].votes != undefined) {
+            this.state.parties.sort(this.dynamicSort("seats"));
+        } else {
+            this.state.parties.sort(this.dynamicSort("votes"));
+        }
     }
 
     sum = (key) => {
@@ -92,6 +100,12 @@ export default class VoteSummaryBarsContainer extends Component {
     }
 
     render() {
+        if(this.props.parties[0].votes != undefined) {
+            this.state.parties.sort(this.dynamicSort("votes"));
+        } else {
+            this.state.parties.sort(this.dynamicSort("seats"));
+        }
+
         var percentages = this.makePercentages();
 
         return (

@@ -28,17 +28,15 @@ export default class NavigationContainer extends Component {
     : this.setState({ dropdownOpen: false })
 
   render() {
-    const { auth, dropdownOpen } = this.state;
-    const { pathname, user } = this.props;
+    const { dropdownOpen } = this.state;
+    const { pathname } = this.props;
 
     return (
       <Navigation
-        user={user}
-        auth={auth}
         pathname={pathname}
-        userDropdownOpen={dropdownOpen}
-        toggleUserDropdown={this.toggleDropdown}
-        closeUserDropdown={this.closeDropdown}
+        dropdownOpen={dropdownOpen}
+        toggleDropdown={this.toggleDropdown}
+        closeDropdown={this.closeDropdown}
       />
     );
   }

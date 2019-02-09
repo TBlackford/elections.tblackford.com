@@ -3,37 +3,16 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import R from '_utils/ramda';
-import UserDropdown from '_molecules/UserDropdown';
 import CountryDropdown from '_molecules/CountryDropdown';
-import Button from '_atoms/Button';
 
 export default function Navigation(props) {
     const {
-        user, auth, pathname, toggleUserDropdown, closeUserDropdown, userDropdownOpen,
+        pathname, toggleDropdown, closeDropdown, dropdownOpen,
     } = props;
-
-    const isHome = (pathname.length === 5)
-        ? pathname === '/home'
-        : R.slice(0, 6, pathname) === '/home/';
 
     const isCountryList = (pathname.length === 12)
         ? pathname === '/countrylist'
         : R.slice(0, 13, pathname) === '/countrylist/';
-
-    const isTodo = (pathname.length === 5)
-        ? pathname === '/todo'
-        : R.slice(0, 6, pathname) === '/todo/';
-
-    const isSettings = (pathname.length === 9)
-        ? pathname === '/settings'
-        : R.slice(0, 10, pathname) === '/settings/';
-
-    const homeItemClasses = classNames({
-        'navbar-item': true,
-        'is-tab': true,
-        'is-hidden-mobile': true,
-        'is-active': isHome,
-    });
 
     const countryItemClasses = classNames({
         'navbar-item': true,
@@ -42,139 +21,49 @@ export default function Navigation(props) {
         'is-active': isCountryList,
     });
 
-    const todoItemClasses = classNames({
-        'navbar-item': true,
-        'is-tab': true,
-        'is-hidden-mobile': true,
-        'is-active': isTodo,
-    });
-
-    const settingsItemClasses = classNames({
-        'navbar-item': true,
-        'is-tab': true,
-        'is-hidden-mobile': true,
-        'is-active': isSettings,
-    });
-
     return (
         <nav className="navbar is-fixed-top has-shadow" role="navigation">
             <div className="container">
                 <div className="navbar-brand">
-                    <Link to={auth ? '/home' : '/'} className="navbar-item" aria-label="main navigation">
+                    <Link to='/' className="navbar-item" aria-label="main navigation">
                         <h3 className="title is-3 logo">
                             Election Histories
                         </h3>
                     </Link>
-                    <Link 
-                        to="/countrylist"
+                    <a 
                         className="navbar-item is-hidden-desktop"
-                        onClick={toggleUserDropdown}
-                        onKeyPress={toggleUserDropdown}
-                        onMouseEnter={toggleUserDropdown}   
+                        onClick={toggleDropdown}
+                        onKeyPress={toggleDropdown} 
                     >
                         <h6 className="title is-6">
                             Countries
                         </h6>
-                    </Link>
-                    <div className="navbar-brand-right">
-                        {!auth && (
-                            <Link to="/register" className="navbar-item is-hidden-desktop">
-                                <Button label="Sign Up" type="success" />
-                            </Link>
-                        )}
-                        {auth && (
-                            <a
-                                className="navbar-item is-hoverable is-hidden-desktop"
-                                onClick={toggleUserDropdown}
-                                onKeyPress={toggleUserDropdown}
-                            >
-                                <figure className="image navbar-image is-32x32">
-                                    <img className="profile-img" src={user.profilePic || '/images/default-profile.png'} alt="" />
-                                </figure>
-                                <span className="dropdown-caret" />
-                            </a>
-                        )}
-                    </div>
+                    </a>
                 </div>
 
 
                 <div className="navbar-menu">                      
-                    {auth ? (
-                        <div className="navbar-start">
-                            <Link to="/home" className={homeItemClasses}>
-                                <h6 className="title is-6">
-                                    Home
-                                </h6>
-                            </Link>
-                            <Link 
-                                to="/countrylist"
-                                className={countryItemClasses}
-                                onClick={toggleUserDropdown}
-                                onKeyPress={toggleUserDropdown}
-                                onMouseEnter={toggleUserDropdown}                                
-                            >
-                                <h6 className="title is-6">
-                                    Country List
-                                </h6>
-                            </Link>
-                            <Link to="/todo" className={todoItemClasses}>
-                                <h6 className="title is-6">
-                                    Todo
-                                </h6>
-                            </Link>
-                            <Link to="/settings" className={settingsItemClasses}>
-                                <h6 className="title is-6">
-                                    Settings
-                                </h6>
-                            </Link>
-                        </div>
-                    ) : (
-                        <div className="navbar-start">
-                            <Link 
-                                to="/countrylist"
-                                className={countryItemClasses}
-                                onClick={toggleUserDropdown}
-                                onKeyPress={toggleUserDropdown}
-                                onMouseEnter={toggleUserDropdown}                                
-                            >
-                                <h6 className="title is-6">
-                                    Country List
-                                </h6>
-                            </Link>
-                        </div>
-                    )}
-
-                    {auth ? (
-                        <div className="navbar-end">
-                                <a className="navbar-item is-hoverable" onClick={toggleUserDropdown} onKeyPress={toggleUserDropdown}>
-                                    <figure className="image navbar-image is-32x32">
-                                        <img className="profile-img" src={user.profilePic || '/images/default-profile.png'} alt="" />
-                                    </figure>
-                                    <span className="dropdown-caret" />
-                                </a>
-                            </div>
-                    ) : (
-                        <div className="navbar-end">
-                        </div>
-                    )}                    
+                    <div className="navbar-start">
+                        <a 
+                            className={countryItemClasses}
+                            onClick={toggleDropdown}
+                            onKeyPress={toggleDropdown}                         
+                        >
+                            <h6 className="title is-6">
+                            Countries
+                            </h6>
+                        </a>
+                    </div>                  
                 </div>
-                <CountryDropdown open={userDropdownOpen} closeDropdown={closeUserDropdown} />
+                <CountryDropdown open={dropdownOpen} closeDropdown={closeDropdown} />
             </div>
         </nav>
     );
 }
 
 Navigation.propTypes = {
-    auth: PropTypes.bool.isRequired,
     pathname: PropTypes.string.isRequired,
-    userDropdownOpen: PropTypes.bool.isRequired,
-    toggleUserDropdown: PropTypes.func.isRequired,
-    closeUserDropdown: PropTypes.func.isRequired,
-    user: PropTypes.shape({
-        username: PropTypes.string,
-        firstName: PropTypes.string,
-        lastName: PropTypes.string,
-        usernameCase: PropTypes.string,
-        profilePic: PropTypes.string,
-    }).isRequired,
+    dropdownOpen: PropTypes.bool.isRequired,
+    toggleDropdown: PropTypes.func.isRequired,
+    closeDropdown: PropTypes.func.isRequired,
 };
