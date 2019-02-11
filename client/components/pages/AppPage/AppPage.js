@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router';
 
-import TimelinePage from '_pages/App/TimelinePage';
-import YearViewPage from '_pages/App/YearViewPage';
+import TimelinePage from '_pages/TimelinePage';
+import YearViewPage from '_pages/YearViewPage';
 
 /*
 
@@ -22,10 +22,13 @@ elections.tblackford.com/app/<country>/v/<year>/<election>/<electorate>/ -- Info
 elections.tblackford.com/app/<country>/c/all -- List of all candidates
 elections.tblackford.com/app/<country>/c/<candidate_name> -- Information on candidate
 
-elections.tblackford.com/app/<country>/i/ -- Information on the country
+elections.tblackford.com/app/<country>/info/ -- Information on the country
 elections.tblackford.com/app/<country>/i/<year>/
 elections.tblackford.com/app/<country>/i/<year>/<election>/
 elections.tblackford.com/app/<country>/i/<year>/<election>/<electorate>/
+
+
+
 <Route path="/app/" component={() => <Redirect to={'/app/' + country + '/v/timeline'} />} /> 
 */
 
