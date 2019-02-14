@@ -17,7 +17,6 @@ export default function TimelineSection({ country }) {
 
         return <TimelineList country={country} />
     }
-
     
     return (
         <div className="section timeline-section">

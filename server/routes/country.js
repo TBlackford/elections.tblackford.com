@@ -63,25 +63,25 @@ router.get('/:country/:year', (req, res) => {
 });
 
 router.get('/:country/:year/:election', (req, res) => {
-    Country.findOne({ isoCode: req.params.country.toUpperCase() }, { __v: 0 }, (err, country) => {
+    var { country, year, election } = req.params;
+    electionParam = election.split('_').join(' ');
+    Country.findOne({ isoCode: country.toUpperCase() }, { __v: 0 }, (err, country) => {
         if (err) {
             res.status(400).send({ message: 'Get country failed', err });
         } else {
-            let years = {};
+            let election = {};
 
             countryObj = country.toObject();
 
-            for (election in countryObj.elections) {
-                for (var i = 0; i < countryObj.elections[election].length; i++) {
-                    if (countryObj.elections[election][i].year == req.params.year)
-                        years[election] = countryObj.elections[election][i];
-                }
+            for (var i = 0; i < countryObj.elections[electionParam].length; i++) {
+                if (countryObj.elections[electionParam][i].year == year)
+                election = countryObj.elections[electionParam][i];
             }
 
-            if (R.isEmpty(years)) {
+            if (R.isEmpty(election)) {
                 res.send({ message: 'No years for that country' });
             } else {
-                res.send({ message: 'Country retrieved successfully', years });
+                res.send({ message: 'Country retrieved successfully', election });
             }
         }
     });

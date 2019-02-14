@@ -177,7 +177,7 @@ class HalfCircle extends Component {
 }
 
 HalfCircle.propTypes = {
-    parliament: PropTypes.object.isRequired,
+    parliament: PropTypes.any.isRequired,
     seatCount: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.number,

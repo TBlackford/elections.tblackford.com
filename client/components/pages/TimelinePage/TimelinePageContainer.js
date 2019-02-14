@@ -17,7 +17,11 @@ export default class TimelinePageContainer extends Component {
         const { getCountry } = this.props;
 
         getCountry(country).then(
-            (country) => this.setState({ loading: false, country: country }),
+            (country) => {
+                this.setState({ loading: false, country: country });
+
+                document.title = "Election Histories | " + country.name;
+            },
             () => console.log("failure")
         );
     }

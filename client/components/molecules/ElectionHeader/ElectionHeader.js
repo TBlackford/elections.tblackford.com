@@ -5,9 +5,7 @@ export default function ElectionHeader(props) {
     const { year, type, votingSystem } = props;
 
     return ( 
-        <b>
-            {year} - {type} ({votingSystem})                                
-        </b>
+        <b>{year} - {type} ({votingSystem})</b>
     );
 }
 

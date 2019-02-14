@@ -16,13 +16,13 @@ export default class ElectionHeaderContainer extends Component {
         const { year, type, votingSystem, isoCode, isLink } = this.props;
 
         if(isLink) {
-            var yearTag = <Link to={"/" + isoCode + "/votes/" + year}>{year}</Link>
-        } else {
-            var yearTag = year
+            var yearTag = <Link to={"/" + isoCode.toLowerCase() + "/votes/" + year}>{year}</Link>
+            var splitType = type.split(' ').join('_');
+            var typeTag = <Link to={"/" + isoCode.toLowerCase() + "/votes/" + year + "/" + splitType}>{type}</Link>
         }
 
         return(
-            <ElectionHeader year={yearTag} type={type} votingSystem={votingSystem} />
+            <ElectionHeader year={yearTag || type} type={typeTag || type} votingSystem={votingSystem} />
         )
     }
 }

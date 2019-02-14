@@ -23,24 +23,32 @@ export default function YearViewPage(props) {
         year = year[Object.keys(year)[0]];
 
         return (
-            <div className="box has-text-centered">
-                <ElectionHeader 
-                    year={year.year} 
-                    type={year.type || type} 
-                    votingSystem={year.votingSystem} 
-                    isLink={false} />
-                <div className="column is-12" style={{ display: "flex" }}>
-                    <div className="column is-8">
-                    </div>
-                    <div className="column is-4" style={{ verticalAlign: "middle"}}>
-                        <SeatChart key={year.year} parties={year.totals} />
-                    </div>
+            <div>
+                <div className="tabs is-centered">
+                    <ul>
+                        <li className="is-active"><a>Overview</a></li>
+                        <li><a>Detailed</a></li>
+                    </ul>
                 </div>
-                <div className="column is-12">
-                    <ResultsBar
-                        key={year.year}
-                        parties={year.totals}
-                        showName={true} />
+                <div className="has-text-centered">
+                    <ElectionHeader 
+                        year={year.year} 
+                        type={year.type || type} 
+                        votingSystem={year.votingSystem} 
+                        isLink={false} />
+                    <div className="box column is-12" style={{ display: "flex" }}>
+                        <div className="column is-8">
+                        </div>
+                        <div className="column is-4" style={{ verticalAlign: "middle"}}>
+                            <SeatChart key={year.year} parties={year.totals} />
+                        </div>
+                    </div>
+                    <div className="box column is-12">
+                        <ResultsBar
+                            key={year.year}
+                            parties={year.totals}
+                            showName={true} />
+                    </div>
                 </div>
             </div>
         )

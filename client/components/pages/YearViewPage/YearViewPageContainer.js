@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import YearViewPage from './YearViewPage';
 
+import { getNameFromCode } from '_utils/isoCodes';
+
 export default class YearViewPageContainer extends Component {
     static propTypes = {
         getCountry: PropTypes.func.isRequired,
@@ -23,6 +25,7 @@ export default class YearViewPageContainer extends Component {
         }).then(
             (years) => {
                 this.setState({loading: false, year: years});
+                document.title = "Election Histories | " + getNameFromCode(country) + " " + year;
             },
             () => console.log("Failure")
         ).catch(() => console.log("Failure"));

@@ -5,7 +5,7 @@ import * as R from 'ramda';
 import { LOGOUT_USER } from '_actions/user';
 
 import {
-    SET_COUNTRY, SET_SPECIFIC_COUNTRY, SET_COUNTRY_YEARS, SET_ALL_COUNTRY, ADD_COUNTRY, UPDATE_COUNTRY, REMOVE_COUNTRY,
+    SET_COUNTRY, SET_SPECIFIC_COUNTRY, SET_COUNTRY_YEARS, SET_COUNTRY_YEAR_ELECTION, SET_ALL_COUNTRY, ADD_COUNTRY, UPDATE_COUNTRY, REMOVE_COUNTRY,
 } from '_actions/country';
 
 export default function country(state = [], action) {
@@ -18,6 +18,14 @@ export default function country(state = [], action) {
 
         case SET_COUNTRY_YEARS:
             return update(state, { $set: action.years });
+
+        case SET_COUNTRY_YEAR_ELECTION:
+            var election = {
+                years: action.year,
+                votingSystem: action.votingSystem,
+                totals: action.totals
+            }
+            return update(state, { $set: election });
 
         case SET_ALL_COUNTRY:
             return update(state, { $set: action.country });

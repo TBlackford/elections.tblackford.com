@@ -210,7 +210,7 @@ class Westminster extends Component {
 }
 
 Westminster.propTypes = {
-    parliament: PropTypes.object.isRequired,
+    parliament: PropTypes.any.isRequired,
     seatCount: PropTypes.oneOfType([
         PropTypes.bool,
         PropTypes.number,

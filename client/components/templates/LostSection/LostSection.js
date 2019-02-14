@@ -1,6 +1,7 @@
 import React from 'react';
 
 export default function Lost() {
+  document.title = "Election Histories | 404 Not Found";
   return (
     <div className="lost-section section">
       <div className="container">

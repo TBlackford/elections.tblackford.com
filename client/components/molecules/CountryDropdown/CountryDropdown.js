@@ -52,9 +52,7 @@ export default class CountryDropdown extends Component {
             <div className="dropdown box" ref={el => { this.dropdown = el; }}>
                 <ul className="dropdown-list">
                     <li className="dropdown-item has-text-centered">
-                        <Link 
-                            to="/countrylist"
-                        >
+                        <Link to="/countrylist">
                             List of Countries
                         </Link>
                     </li>
@@ -64,7 +62,7 @@ export default class CountryDropdown extends Component {
                             var iso = country.isoCode;
                             return(                            
                                 <li key={country.name} className="dropdown-item">
-                                    <Link to={"/" + iso.toLowerCase() + "/v/timeline"} onClick={closeDropdown}>
+                                    <Link to={"/" + iso.toLowerCase() + "/votes/timeline"} onClick={closeDropdown}>
                                         <div className="columns is-flex-desktop center-align">
                                             <div className="column is-6 has-text-centered">
                                                 {country.name}

@@ -2,7 +2,7 @@ import { snakeToCamelCase } from 'json-style-converter/es5';
 import R from '_utils/ramda';
 
 import { getCountry, getAllCountry, getSpecificCountry, getCountryYear, getCountryYearElection, putCountry, deleteCountry } from '_api/country';
-import { setCountry, setSpecificCountry, setCountryYears, setAllCountry, addCountry, updateCountry, removeCountry } from '_actions/country';
+import { setCountry, setSpecificCountry, setCountryYears, setCountryYearElection, setAllCountry, addCountry, updateCountry, removeCountry } from '_actions/country';
 
 import { dispatchError } from '_utils/api';
 
@@ -46,24 +46,25 @@ export const attemptGetCountryYear = ({country, year}) => dispatch =>
                 R.omit(['Id'], R.assoc('id', c._id, snakeToCamelCase(c))), data.years     
             );
 
-            console.log(data);
-
             dispatch(setCountryYears(years));
             return data.years;
         })
         .catch(dispatchError(dispatch));
 
-export const attemptGetCountryYearElection = ({country, year, election}) => dispatch => {
-    getCountryYearElection(country, year, election)
+export const attemptGetCountryYearElection = ({country, year, election}) => dispatch => 
+    getCountryYearElection(country, year, election.split('_').join(' '))
         .then(data => {
-            const country = R.map(c =>
-                R.omit(['Id'], R.assoc('id', c._id, snakeToCamelCase(c))), data.country);
-
-            dispatch(setAllCountry(country));
-            return data.country;
+            dispatch(setCountryYearElection(
+                {
+                    year: data.election.year,
+                    votingSystem: data.election.votingSystem,
+                    totals: data.election.totals
+                }
+            ));
+            
+            return data.election;
         })
         .catch(dispatchError(dispatch));
-}
 
 export const attemptAddCountry = ({ id, name, iso_code, continent, flag_url }) => dispatch =>
     postCountry({ id, name, iso_code, continent, flag_url })

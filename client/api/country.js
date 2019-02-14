@@ -1,13 +1,5 @@
 import request from 'superagent';
 import { handleSuccess, handleError } from '_utils/api';
-
-const foo = (country, year) => {
-    console.log(country);
-    return request.get('/api/country/' + country + '/' + year)
-        .then(handleSuccess)
-        .catch(handleError)
-}
-
 export const postCountry = info =>
     request.post('/api/country')
         .send(info)
