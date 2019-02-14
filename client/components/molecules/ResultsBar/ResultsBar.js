@@ -11,7 +11,7 @@ export default function ResultsBar(props) {
                     <div style={{textAlign: "center", verticalAlign: "middle", width: "100%", fontSize: "2em"}}>↓</div> :
                     <div />
             }
-            <div style={{ height: "24px", width: "100%", display: "flex", flexWrap: "wrap" }}>
+            <div style={{ height: "24px", display: "flex", flexWrap: "wrap" }}>
                 {segments}
             </div>
             <br />

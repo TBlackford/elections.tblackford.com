@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import Bar from '_atoms/Bar';
+
 import ResultsBar from './ResultsBar';
 
 export default class ResultsBarContainer extends Component {
@@ -38,56 +40,25 @@ export default class ResultsBarContainer extends Component {
         return width;
     }
 
-    getBar = (theStyle, text) => {
-        return (
-            <div style={theStyle}>
-                <b>{text}</b>
-            </div>
-        )
-    }
-
-    makeSegments = (elements, parties, showName) => {
-        var widths = {};
-
-        // First, get the coloured segments
+    makeSegments = (elements, parties) => {
         for (var party in parties) {
-            widths[party] = this.getWidth(parties[party]);
-            var colouredStyle = {
-                height: "24px",
-                width: widths[party],
-                backgroundColor: parties[party].colour,
-                color: "white",
-                fontSize: "12px",
-                textAlign: "center",
-                lineHeight: "2",
-                verticalAlign: "middle"
-            }
-            elements.push(this.getBar(colouredStyle, parties[party].seats));
-        }
+            const width = this.getWidth(parties[party]);
+            const colour = parties[party].colour;
+            const text = parties[party].name;
+            const number = parties[party].seats;
 
-        if (showName) {
-            elements.push(<br />);
-
-            for (var party in parties) {
-                
-                var textStyle = {
-                    height: "24px",
-                    width: widths[party],
-                    overflow: "hidden",
-                    fontSize: "12px",
-                    textAlign: "center",
-                    lineHeight: "2",
-                    verticalAlign: "middle"
-                }
-
-                if (Math.floor(parseFloat(widths[party])) <= parties[party].name.length) {
-                    textStyle = Object.assign(textStyle, {opacity: "0"})
-                }
-
-                elements.push(this.getBar(textStyle, parties[party].name));       
-                   
-            }
-        }
+            if(width != "0%") {
+                elements.push(
+                    <Bar 
+                        key={JSON.stringify(parties[party])}
+                        width={width} 
+                        colour={colour} 
+                        number={number}
+                        text={text}
+                    />
+                );
+            }            
+        }        
 
         return elements;
     }
@@ -95,7 +66,7 @@ export default class ResultsBarContainer extends Component {
     render() {
         var elements = [];
 
-        elements = this.makeSegments(elements, this.props.parties, this.props.showName);
+        elements = this.makeSegments(elements, this.props.parties);        
 
         return (
             <ResultsBar segments={elements} showArrow={this.props.showArrow} />

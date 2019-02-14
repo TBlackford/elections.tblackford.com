@@ -6,23 +6,31 @@ import ElectionHeader from './ElectionHeader';
 export default class ElectionHeaderContainer extends Component {
     static propTypes = {
         year: PropTypes.string,
-        type: PropTypes.string,
+        electionType: PropTypes.any,
         votingSystem: PropTypes.string,
         isoCode: PropTypes.string,
         isLink: PropTypes.bool
     };
 
+    static defaultProps = {
+        year: '',
+        electionType: '',
+        votingSystem: '',
+        isoCode: '',
+        isLink: false,
+    }//*/
+
     render() {
-        const { year, type, votingSystem, isoCode, isLink } = this.props;
+        const { year, electionType, votingSystem, isoCode, isLink } = this.props;
 
         if(isLink) {
             var yearTag = <Link to={"/" + isoCode.toLowerCase() + "/votes/" + year}>{year}</Link>
-            var splitType = type.split(' ').join('_');
-            var typeTag = <Link to={"/" + isoCode.toLowerCase() + "/votes/" + year + "/" + splitType}>{type}</Link>
+            var splitType = electionType.split(' ').join('_');
+            var typeTag = <Link to={"/" + isoCode.toLowerCase() + "/votes/" + year + "/" + splitType}>{electionType}</Link>
         }
 
         return(
-            <ElectionHeader year={yearTag || type} type={typeTag || type} votingSystem={votingSystem} />
+            <ElectionHeader year={yearTag || year} electionType={typeTag || electionType} votingSystem={votingSystem} />
         )
     }
 }

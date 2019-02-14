@@ -9,7 +9,7 @@ export default function Bar(props) {
 
     const styles = {
         default: {
-            width: width,
+            width: "100%",
             height: "24px",
             fontSize: "12px",
             textAlign: "center",
@@ -17,9 +17,7 @@ export default function Bar(props) {
             verticalAlign: "middle",
         },
         common: { // Don't override
-            width: "100%",
-            display: "flex",
-            flexWrap: "wrap"
+            width: width,
         },
         number: {
             backgroundColor: colour,
@@ -29,17 +27,17 @@ export default function Bar(props) {
         },
         text: {
             color: "#4a4a4a",
+            whiteSpace: "nowrap",
             textOverflow: "ellipsis",
-            display: (displayText) ? "block" : "none"
+            overflow: "hidden",
         }
     }
 
     return (
         <div style={Object.assign({}, styles.common, style)}>
             <div style={Object.assign({}, styles.default, styles.number, numberStyle)}>
-                <b style={{display: (displayNumber) ? "block" : "none"}}>{number}</b>
+                <b>{number}</b>
             </div>
-            <br />
             <div style={Object.assign({}, styles.default, styles.text, textStyle)}>
                 <b>{text}</b>
             </div>

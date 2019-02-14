@@ -2,15 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function ElectionHeader(props) {
-    const { year, type, votingSystem } = props;
+    const { year, electionType, votingSystem } = props;
 
     return ( 
-        <b>{year} - {type} ({votingSystem})</b>
+        <b>{year} - {electionType} ({votingSystem})</b>
     );
 }
 
-ElectionHeader.PropTypes = {
+ElectionHeader.propTypes = {
     year: PropTypes.element,
-    type: PropTypes.string,
+    electionType: PropTypes.any,
     votingSystem: PropTypes.string,
 };

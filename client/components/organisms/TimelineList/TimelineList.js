@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import * as R from 'ramda';
 
+import Bar from '_atoms/Bar';
+
 import ElectionHeader from '_molecules/ElectionHeader';
 
 import VoteSummaryBars from '_molecules/VoteSummaryBars';
@@ -30,11 +32,12 @@ export default function TimelineList(props) {
             {
                 elections.map(election => {
                     type = election.type || type;
+                    
                     return (
-                        <div className="box has-text-centered">
+                        <div key={JSON.stringify(election)} className="box has-text-centered">
                             <ElectionHeader 
                                 year={election.year} 
-                                type={election.type || type} 
+                                electionType={election.type || type} 
                                 votingSystem={election.votingSystem} 
                                 isoCode={country.isoCode}
                                 isLink={true} />
