@@ -6,7 +6,7 @@ import * as R from 'ramda';
 import Bar from '_atoms/Bar';
 
 import ElectionHeader from '_molecules/ElectionHeader';
-
+import TimelineListItem from '_molecules/TimelineListItem';
 import VoteSummaryBars from '_molecules/VoteSummaryBars';
 import ResultsBar from '_molecules/ResultsBar';
 import SeatChart from '_molecules/SeatChart';
@@ -15,10 +15,11 @@ export default function TimelineList(props) {
     var { country, elections } = props;  
     var type;
 
+    // If it's an object with one key
     if(Object.keys(elections).length == 1) {
         type = Object.keys(elections)[0];
         elections = elections[Object.keys(elections)[0]];
-    }
+    }//*/
 
     return (
         <div className="timelinelist">
@@ -32,21 +33,15 @@ export default function TimelineList(props) {
             {
                 elections.map(election => {
                     type = election.type || type;
-                    
+
                     return (
-                        <div key={JSON.stringify(election)} className="box has-text-centered">
-                            <ElectionHeader 
-                                year={election.year} 
-                                electionType={election.type || type} 
-                                votingSystem={election.votingSystem} 
-                                isoCode={country.isoCode}
-                                isLink={true} />
-                            <div className="column is-12">
-                                <ResultsBar
-                                    key={election.year}
-                                    parties={election.totals}
-                                    showName={true} />
-                            </div>
+                        <div className="box">
+                            <TimelineListItem 
+                                key={JSON.stringify(election)}
+                                electionType={type}
+                                election={election}
+                                country={country}
+                            />
                         </div>
                     )
                 })
