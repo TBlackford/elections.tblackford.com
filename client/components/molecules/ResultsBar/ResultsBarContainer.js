@@ -24,7 +24,7 @@ export default class ResultsBarContainer extends Component {
         var result = 0;
 
         for (var i = 0; i < this.props.parties.length; i++) {
-            result += this.props.parties[i].seats;
+            result += this.props.parties[i].seats || this.props.parties[i].electoralVotes;
         }
 
         return result;
@@ -32,10 +32,14 @@ export default class ResultsBarContainer extends Component {
 
     getWidth = (party) => {
         const total = this.sum();
-        const partySeats = parseInt(party.seats);
+        const partySeats = parseInt(party.seats || party.electoralVotes);
         var width = partySeats / total * 100;
 
         width = width.toString() + "%";
+
+        if(width == NaN) {
+            return "0%";
+        }
 
         return width;
     }
@@ -44,8 +48,13 @@ export default class ResultsBarContainer extends Component {
         for (var party in parties) {
             const width = this.getWidth(parties[party]);
             const colour = parties[party].colour;
-            const text = parties[party].name;
-            const number = parties[party].seats;
+            var name = parties[party].name || '';
+            if(name == '') {
+                var text = parties[party].party;
+            } else {
+                var text = parties[party].name;
+            }
+            const number = parties[party].seats || parties[party].electoralVotes;
 
             if(width != "0%") {
                 elements.push(

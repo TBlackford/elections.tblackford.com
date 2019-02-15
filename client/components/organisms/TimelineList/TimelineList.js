@@ -11,45 +11,32 @@ import VoteSummaryBars from '_molecules/VoteSummaryBars';
 import ResultsBar from '_molecules/ResultsBar';
 import SeatChart from '_molecules/SeatChart';
 
-export default function TimelineList(props) {
-    var { country, elections } = props;  
-    var type;
+//<li className="is-active"><a>Simple</a></li>
+///<li><a>Detailed</a></li>
 
-    // If it's an object with one key
-    if(Object.keys(elections).length == 1) {
-        type = Object.keys(elections)[0];
-        elections = elections[Object.keys(elections)[0]];
-    }//*/
+export default function TimelineList(props) {
+    var { elements, electionTypes } = props;  
 
     return (
         <div className="timelinelist">
             {/*TODO: move this tab section to an organism*/}
             <div className="tabs is-centered">
                 <ul>
-                    <li className="is-active"><a>Simple</a></li>
-                    <li><a>Detailed</a></li>
+                    <li className="is-active"><a>All</a></li>
+                    {
+                        electionTypes.map((type, key) => {
+                            return (
+                                <li key={key}><a>{type}</a></li>
+                            )
+                        })
+                    }                    
                 </ul>
             </div>
-            {
-                elections.map(election => {
-                    type = election.type || type;
-
-                    return (
-                        <div className="box">
-                            <TimelineListItem 
-                                key={JSON.stringify(election)}
-                                electionType={type}
-                                election={election}
-                                country={country}
-                            />
-                        </div>
-                    )
-                })
-            }
+            {elements}
         </div>
     );
 }
 
 TimelineList.propTypes = {
-    elections: PropTypes.any.isRequired,
+    elements: PropTypes.any.isRequired,
 };

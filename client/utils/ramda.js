@@ -5,6 +5,11 @@ import head from 'ramda/src/head';
 import identity from 'ramda/src/identity';
 import isEmpty from 'ramda/src/isEmpty';
 import map from 'ramda/src/map';
+import filter from 'ramda/src/filter';
+import findIndex from 'ramda/src/findIndex';
+import where from 'ramda/src/where';
+import propEq from 'ramda/src/propEq';
+import contains from 'ramda/src/contains';
 import match from 'ramda/src/match';
 import omit from 'ramda/src/omit';
 import pick from 'ramda/src/pick';
@@ -20,6 +25,11 @@ export default {
   identity,
   isEmpty,
   map,
+  propEq,
+  filter,
+  findIndex,
+  contains,
+  where,
   match,
   omit,
   pick,

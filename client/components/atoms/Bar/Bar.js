@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import hexToHsl  from 'hex-to-hsl';
 
 export default function Bar(props) {
     const { 
@@ -21,7 +22,7 @@ export default function Bar(props) {
         },
         number: {
             backgroundColor: colour,
-            color: "white",
+            color: (hexToHsl(colour)[2] > 70) ? "#4a4a4a" : "white",
             overflow: "hidden",
             // The display thing is in the render return            
         },
