@@ -46,7 +46,7 @@ export default class TimelineListContainer extends Component {
             return electionTypes.indexOf(item) == pos;
         }).reverse()
 
-        return {elements, electionTypes};
+        return { elements, electionTypes };
     }
 
     render() {

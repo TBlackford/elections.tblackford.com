@@ -52,6 +52,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.4.2",
     "@fortawesome/free-solid-svg-icons": "^5.4.2",
     "@fortawesome/react-fontawesome": "^0.1.3",
+    "@tblackford/blackorwhite": "^1.0.1",
     "acl": "^0.4.11",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",

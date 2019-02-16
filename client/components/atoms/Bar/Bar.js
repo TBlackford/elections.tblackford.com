@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import hexToHsl  from 'hex-to-hsl';
 
+import { bow } from '_utils';
+
 export default function Bar(props) {
     const { 
         style, numberStyle, textStyle, width, colour, text, number,
@@ -22,7 +24,7 @@ export default function Bar(props) {
         },
         number: {
             backgroundColor: colour,
-            color: (hexToHsl(colour)[2] > 70) ? "#4a4a4a" : "white",
+            color: bow.findTextColor(colour),
             overflow: "hidden",
             // The display thing is in the render return            
         },

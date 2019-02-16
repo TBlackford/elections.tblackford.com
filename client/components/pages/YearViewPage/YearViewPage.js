@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
 
+import YearViewSection from '_templates/YearViewSection';
+
 import ElectionHeader from '_molecules/ElectionHeader';
 
 import VoteSummaryBars from '_molecules/VoteSummaryBars';
@@ -18,7 +20,21 @@ export default function YearViewPage(props) {
         )
     }
 
-    if(Object.keys(year).length == 1) {
+    return (
+        <div>
+            <div className="tabs is-centered">
+                <ul>
+                    <li className="is-active"><a>Overview</a></li>
+                    <li><a>Detailed</a></li>
+                </ul>
+            </div>
+            <div className="has-text-centered">
+                <YearViewSection />
+            </div>
+        </div>
+    )
+
+    /*if(Object.keys(year).length == 1) {
         type = Object.keys(year)[0];
         year = year[Object.keys(year)[0]];
 
@@ -59,5 +75,5 @@ export default function YearViewPage(props) {
                 <p>TODO</p>
             </div>
         )
-    }    
+    }    //*/
 }
