@@ -39,7 +39,7 @@ export const attemptGetSpecificCountry = country => dispatch =>
         })
         .catch(dispatchError(dispatch));
 
-export const attemptGetCountryYear = ({country, year}) => dispatch => 
+export const attemptGetCountryYear = ({country, year}) => dispatch =>  
     getCountryYear(country, year)
         .then(data => {            
             const years = R.map(c => 
@@ -51,8 +51,9 @@ export const attemptGetCountryYear = ({country, year}) => dispatch =>
         })
         .catch(dispatchError(dispatch));
 
-export const attemptGetCountryYearElection = ({country, year, election}) => dispatch => 
-    getCountryYearElection(country, year, election.split('_').join(' '))
+export const attemptGetCountryYearElection = ({country, year, election}) => dispatch => {
+    console.log(election);
+    return getCountryYearElection(country, year, election.split('_').join(' '))
         .then(data => {
             dispatch(setCountryYearElection(
                 {
@@ -65,6 +66,7 @@ export const attemptGetCountryYearElection = ({country, year, election}) => disp
             return data.election;
         })
         .catch(dispatchError(dispatch));
+    }
 
 export const attemptAddCountry = ({ id, name, iso_code, continent, flag_url }) => dispatch =>
     postCountry({ id, name, iso_code, continent, flag_url })

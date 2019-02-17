@@ -11,10 +11,9 @@ import ResultsBar from '_molecules/ResultsBar';
 import SeatChart from '_molecules/SeatChart';
 
 export default function YearViewPage(props) {
-    var { year } = props;
-    var type;
+    var { year, elections, country } = props;
 
-    if (!year) {
+    if (!elections) {
         return (
             <Redirect to="/404" />
         )
@@ -29,7 +28,7 @@ export default function YearViewPage(props) {
                 </ul>
             </div>
             <div className="has-text-centered">
-                <YearViewSection />
+                <YearViewSection year={year} elections={elections} country={country} />
             </div>
         </div>
     )

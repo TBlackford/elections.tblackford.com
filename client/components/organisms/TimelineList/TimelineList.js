@@ -19,7 +19,7 @@ export default function TimelineList(props) {
 
     return (
         <div className="timelinelist">
-            {/*TODO: move this tab section to an organism*/}
+            {/*TODO: move this tab section to an organism
             <div className="tabs is-centered">
                 <ul>
                     <li className="is-active"><a>All</a></li>
@@ -31,7 +31,7 @@ export default function TimelineList(props) {
                         })
                     }                    
                 </ul>
-            </div>
+            </div>*/}
             {elements}
         </div>
     );

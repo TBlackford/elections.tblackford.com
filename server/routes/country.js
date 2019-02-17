@@ -42,17 +42,8 @@ router.get('/:country/:year', (req, res) => {
         if (err) {
             res.status(400).send({ message: 'Get country failed', err });
         } else {
-            let years = {};
-
             countryObj = country.toObject();
-
-            for(election in countryObj.elections) {
-                for (var i = 0; i < countryObj.elections[election].length; i++) {
-                    if (countryObj.elections[election][i].year == req.params.year)
-                        years[election] = countryObj.elections[election][i];
-                }
-            }
-
+            let years = countryObj.elections[req.params.year];
             if (R.isEmpty(years)) {
                 res.send({ message: 'No years for that country' });
             } else {
@@ -69,13 +60,16 @@ router.get('/:country/:year/:election', (req, res) => {
         if (err) {
             res.status(400).send({ message: 'Get country failed', err });
         } else {
+            countryObj = country.toObject();
+            
             let election = {};
 
-            countryObj = country.toObject();
+            console.log(countryObj.elections[year]);
 
-            for (var i = 0; i < countryObj.elections[electionParam].length; i++) {
-                if (countryObj.elections[electionParam][i].year == year)
-                election = countryObj.elections[electionParam][i];
+            for(var i = 0; i < countryObj.elections[year].length; i++) {
+                if(countryObj.elections[year][i].electionType == electionParam) {
+                    election = countryObj.elections[year][i];
+                }
             }
 
             if (R.isEmpty(election)) {

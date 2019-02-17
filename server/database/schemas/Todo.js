@@ -15,7 +15,7 @@ const todoSchema = new Schema({
 todoSchema.plugin(immutablePlugin);
 
 todoSchema.methods.hide = function() {
-  return R.omit(['__v'], this.toObject());
+    return R.omit(['__v'], this.toObject());
 };
 
 const Todo = mongoose.model('Todo', todoSchema);

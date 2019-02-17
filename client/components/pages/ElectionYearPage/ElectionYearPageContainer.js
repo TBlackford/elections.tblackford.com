@@ -22,6 +22,7 @@ export default class ElectionYearPageContainer extends Component {
             election: election
         }).then(
             (election) => {
+                console.log(election);
                 this.setState({ loading: false, election: election });
             },
             () => console.log("failure")
@@ -30,7 +31,7 @@ export default class ElectionYearPageContainer extends Component {
 
     render() {
         return !this.state.loading && (
-            <ElectionYearPage />
+            <ElectionYearPage election={this.state.election} />
         );
     }
 }

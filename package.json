@@ -69,6 +69,7 @@
     "history": "^4.7.2",
     "immutability-helper": "^2.8.1",
     "json-style-converter": "^1.0.3",
+    "leaflet": "^1.4.0",
     "mongoose": "^5.3.7",
     "mongoose-auto-increment-reworked": "^1.2.1",
     "mongoose-immutable": "0.0.2",
