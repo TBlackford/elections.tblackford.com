@@ -5,8 +5,6 @@ import React from 'react';
 export default function Timeline(props) {
     const { election } = props;
 
-    console.log(election);
-
     return ( 
         <div className="timeline-page page">
             {election.electionType}

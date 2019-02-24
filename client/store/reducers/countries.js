@@ -1,13 +1,13 @@
 import update from 'immutability-helper';
 
 import {
-    SET_COUNTRY
+    SET_COUNTRIES
 } from '_actions/country';
 
 export default function country(state = [], action) {
     switch (action.type) {
-        case SET_COUNTRY:
-            return update(state, { $set: action.country });
+        case SET_COUNTRIES:
+            return update(state, { $set: action.countries });
         default:
             return state;
     }

@@ -64,8 +64,6 @@ router.get('/:country/:year/:election', (req, res) => {
             
             let election = {};
 
-            console.log(countryObj.elections[year]);
-
             for(var i = 0; i < countryObj.elections[year].length; i++) {
                 if(countryObj.elections[year][i].electionType == electionParam) {
                     election = countryObj.elections[year][i];

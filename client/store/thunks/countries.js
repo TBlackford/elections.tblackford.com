@@ -1,8 +1,8 @@
 import { snakeToCamelCase } from 'json-style-converter/es5';
 import R from '_utils/ramda';
 
-import { getCountry, getAllCountry, getSpecificCountry, getCountryYear, getCountryYearElection, putCountry, deleteCountry } from '_api/country';
-import { setCountry, setSpecificCountry, setCountryYears, setCountryYearElection, setAllCountry, addCountry, updateCountry, removeCountry } from '_actions/country';
+import { getCountry, getAllCountry, getSpecificCountry, getCountryYear, getCountryYearElection, putCountry, deleteCountry } from '_api/countries';
+import { setCountry, setSpecificCountry, setCountryYears, setCountryYearElection, setAllCountry, addCountry, updateCountry, removeCountry } from '_actions/countries';
 
 import { dispatchError } from '_utils/api';
 
@@ -34,7 +34,7 @@ export const attemptGetSpecificCountry = country => dispatch =>
             const country = R.map(c =>
                 R.omit(['Id'], R.assoc('id', c._id, snakeToCamelCase(c))), data.country);
 
-            dispatch(setSpecificCountry(country.name, country.isoCode, country.continent, country.flagUrl));
+            dispatch(setSpecificCountry(country.name, country.isoCode, country.continent, country.flagUrl, country.elections));
             return data.country;
         })
         .catch(dispatchError(dispatch));

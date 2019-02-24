@@ -8,22 +8,3 @@ export const setParty = party => ({
     type: SET_PARTY,
     party,
 });
-
-export const addParty = ({ id, name, colour }) => ({
-    type: ADD_PARTY,
-    id,
-    name,
-    colour
-});
-
-export const updateParty = ({ id, name, colour }) => ({
-    type: UPDATE_PARTY,
-    id,
-    name,
-    colour
-});
-
-export const removeParty = id => ({
-    type: REMOVE_PARTY,
-    id,
-});

@@ -1,7 +1,7 @@
 import request from 'superagent';
 import { handleSuccess, handleError } from '_utils/api';
 
-export const getParty = () =>
-    request.get('/api/party')
+export const getCountry = () =>
+    request.get('/api/country')
         .then(handleSuccess)
         .catch(handleError);
