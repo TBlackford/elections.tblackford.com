@@ -45,9 +45,7 @@ export default class TimelineListContainer extends Component {
     }
 
     render() {
-        console.log(this.props);
-
-        var elections = this.props.elections.reverse();
+        var elections = this.props.elections;
         var { elements, electionTypes } = this.makeTimelineItems(elections, this.props.country);
 
         return (

@@ -32,7 +32,7 @@ export default class ResultsBarContainer extends Component {
 
     getWidth = (party) => {
         const total = this.sum();
-        const partySeats = parseInt(party.seats || party.electoralVotes);
+        const partySeats = parseInt(party.seats) || parseInt(party.electoralVotes);
         var width = partySeats / total * 100;
 
         width = width.toString() + "%";

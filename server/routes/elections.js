@@ -36,7 +36,7 @@ router.get('/:country', (req, res) => {
                 country: country._id
             }, { _id: 0, __v: 0 }, (err, elections) => {
                 send(res, err, elections);
-            }).populate('country').sort({name: -1});   
+            }).populate('country').sort({year: -1});   
         }
     });    
 });
@@ -53,7 +53,7 @@ router.get('/:country/:year', (req, res) => {
                 year: req.params.year
             }, { _id: 0, __v: 0 }, (err, elections) => {
                 send(res, err, elections);
-            }).populate('country').sort({name: -1});   
+            }).populate('country').sort({year: -1});   
         }
     });    
 });
@@ -69,7 +69,7 @@ router.get('/:country/:year/:election', (req, res) => {
                 electionType: req.params.election.split("_").join(" ")
             }, { _id: 0, __v: 0 }, (err, elections) => {
                 send(res, err, elections);
-            }).populate('country').sort({name: -1});   
+            }).populate('country').sort({year: -1});   
         }
     });    
 });
