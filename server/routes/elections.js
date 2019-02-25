@@ -63,7 +63,7 @@ router.get('/:country/:year/:election', (req, res) => {
         if (err) {
             res.status(400).send({ message: 'Get country failed', err });
         } else {
-            Election.find({
+            Election.findOne({
                 country: country._id,
                 year: req.params.year,
                 electionType: req.params.election.split("_").join(" ")

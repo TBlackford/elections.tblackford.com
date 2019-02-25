@@ -4,6 +4,7 @@ import { reducer as alerts } from 'react-notification-system-redux';
 import user from './user';
 import countries from './countries';
 import country from './country';
+import election from './election';
 import elections from './elections';
 import party from './party';
 
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
     user: user,
     country: country,
     countries: countries,
+    election: election,
     elections: elections,
     party: party
 });

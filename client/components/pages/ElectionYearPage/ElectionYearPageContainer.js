@@ -4,27 +4,24 @@ import ElectionYearPage from './ElectionYearPage';
 
 export default class ElectionYearPageContainer extends Component {
     static propTypes = {
-        getCountryYearElection: PropTypes.func.isRequired,
+        getCountry: PropTypes.func.isRequired,
+        getElection: PropTypes.func.isRequired,
     }
 
     state = {
         loading: true,
-        election: {}
     }
 
     componentDidMount() {     
-        const { getCountryYearElection } = this.props;
+        const { getElection } = this.props;
         const { country, year, election } = this.props.match.params;
 
-        getCountryYearElection({
-            country: country, 
-            year: year, 
-            election: election
-        }).then(
-            (election) => {
-                console.log(election);
-                this.setState({ loading: false, election: election });
-            },
+        getElection(
+            country, 
+            year, 
+            election
+        ).then(
+            () => this.setState({ loading: false }),
             () => console.log("failure")
         );
     }

@@ -9,7 +9,6 @@ export default function election(state = {}, action) {
     switch (action.type) {
         case SET_ELECTION: 
             return update(state, {
-                _id: { $set: action._id },
                 year: { $set: action.year },
                 electionType: { $set: action.electionType },
                 votingSystem: { $set: action.votingSystem },
