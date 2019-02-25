@@ -10,17 +10,14 @@ export default class TimelinePageContainer extends Component {
 
     state = {
         loading: true,
-        country: {}
     }
 
     setCountry(country) {
         const { getCountry } = this.props;
 
         getCountry(country).then(
-            (country) => {
-                this.setState({ loading: false, country: country });
-
-                document.title = "Election Histories | " + country.name;
+            () => {
+                this.setState({ loading: false });
             },
             () => console.log("failure")
         );
@@ -30,16 +27,11 @@ export default class TimelinePageContainer extends Component {
         this.setCountry(this.props.match.params.country);
     }
 
-    componentWillReceiveProps(nextProps) {
-        // You don't have to do this check first, but it can help prevent an unneeded render
-        if(nextProps.match.params.country != this.state.country.name) {
-            this.setCountry(nextProps.match.params.country);
-        }
-    }
-
     render() {
+        console.log(this.props);
+        console.log(this.state);
         return !this.state.loading && (
-            <TimelinePage country={this.state.country} />
+            <TimelinePage />
         );
     }
 }

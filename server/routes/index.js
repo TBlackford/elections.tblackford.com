@@ -6,6 +6,7 @@ const user         = require('./user');
 const users        = require('./users');
 const todos        = require('./todos');
 const country      = require('./country');
+const elections    = require('./elections');
 const party        = require('./party');
 
 const router = express.Router();
@@ -15,6 +16,7 @@ router.use('/api/user', user);
 router.use('/api/users', users);
 router.use('/api/todos', todos);
 router.use('/api/country', country);
+router.use('/api/elections', elections);
 router.use('/api/party', party);
 
 router.get('/api/tags', (req, res) => {

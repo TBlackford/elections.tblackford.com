@@ -1,18 +1,26 @@
-const R = require('ramda');
 const mongoose = require('mongoose');
 const immutablePlugin = require('mongoose-immutable');
+const R = require('ramda');
 
 const { Schema } = mongoose;
 
-// This needs to have the votes... maybe?
-
 const electionSchema = new Schema({
-    name: { type: String },
-    year: { type: Number },
-    country: { type: Schema.ObjectId, ref: 'Country', required: true },
-    geoJSON: { type: String },
+    year: { type: String, required: true },
+    electionType: { type: String, required: true },
+    votingSystem: { type: String, required: true },
 
-    candidates: { type: [Schema.Types.Mixed] }, // idk
+    country: { type: Schema.Types.ObjectId, ref: 'Country' },
+    map: { type: Schema.Types.ObjectId, ref: 'Map' },
+
+    totals: [
+        { 
+            // Should it be a string or an object reference ID
+            party: { type: String, required: true },
+            seats: { type: String },
+            votes: { type: String },
+            colour: { type: String, required: true },
+        }
+    ]
 });
 
 electionSchema.plugin(immutablePlugin);

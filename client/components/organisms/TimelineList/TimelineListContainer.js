@@ -9,6 +9,7 @@ import TimelineListItem from '_molecules/TimelineListItem';
 export default class TimelineListContainer extends Component {
     static propTypes = {
         country: PropTypes.shape({}).isRequired,
+        elections: PropTypes.shape({}).isRequired,
     }
 
     makeTimelineItems = (elections, country, year) => {
@@ -62,9 +63,7 @@ export default class TimelineListContainer extends Component {
                     </div>
                 )   
             }
-        }
-
-        
+        }        
 
         // reduce the election types down
         electionTypes = electionTypes.filter(function(item, pos) {
@@ -75,6 +74,7 @@ export default class TimelineListContainer extends Component {
     }
 
     render() {
+        console.log(this.props);
         const country = {
             name: this.props.country.name,
             isoCode: this.props.country.isoCode,
@@ -83,8 +83,12 @@ export default class TimelineListContainer extends Component {
         }
 
         var year = this.props.year || '';
-        var elections = this.props.elections || this.props.country.elections;
-        var { elements, electionTypes } = this.makeTimelineItems(elections, country, year);
+        //var elections = this.props.elections || this.props.country.elections;
+        //var { elements, electionTypes } = this.makeTimelineItems(elections, country, year);
+
+        return (
+            <div />
+        )
 
         return (
             <TimelineList elements={elements} electionTypes={electionTypes} />
