@@ -5,7 +5,7 @@ import CountryListPage from './CountryListPage';
 
 export default class CountryListPageContainer extends Component {
     static propTypes = {
-        getCountry: PropTypes.func.isRequired,
+        getCountries: PropTypes.func.isRequired,
     }
 
     state = {
@@ -13,9 +13,9 @@ export default class CountryListPageContainer extends Component {
     }
 
     componentDidMount() {
-        const { getCountry } = this.props;
+        const { getCountries } = this.props;
 
-        getCountry().then(
+        getCountries().then(
             () => this.setState({ loading: false }), 
             () => console.log("failure")
         );        

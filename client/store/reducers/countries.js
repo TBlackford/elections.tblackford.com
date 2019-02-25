@@ -1,13 +1,16 @@
 import update from 'immutability-helper';
+import * as R from 'ramda';
 
 import {
     SET_COUNTRIES
-} from '_actions/country';
+} from '_actions/countries';
 
-export default function country(state = [], action) {
+export default function countries(state = [], action) {
+
     switch (action.type) {
-        case SET_COUNTRIES:
+        case SET_COUNTRIES: 
             return update(state, { $set: action.countries });
+        
         default:
             return state;
     }

@@ -9,11 +9,12 @@ import { dispatchError } from '_utils/api';
 export const attemptGetCountries = () => dispatch =>
     getCountries()
         .then(data => {
-            const country = R.map(c =>
-                R.omit(['Id'], R.assoc('id', c._id, snakeToCamelCase(c))), data.country);
+            const countries = R.map(c =>
+                R.omit(['Id'], R.assoc('id', c._id, snakeToCamelCase(c))), data.countries);
 
-            dispatch(setCountries(country));
-            return data.country;
+            dispatch(setCountries(countries));
+            
+            return countries;
         })
         .catch(dispatchError(dispatch));
 

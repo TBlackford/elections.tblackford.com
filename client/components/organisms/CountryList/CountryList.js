@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import * as R from 'ramda';
 import CountryCard from '_molecules/CountryCard';
 
-export default function CountryList({ country }) {
+export default function CountryList({ countries }) {
     return (
         <ul className="country-list columns flexbox-container">
-            {R.reverse(country).map(c => <CountryCard key={c.id} {...c} />)}
+            {R.reverse(countries).map(country => <CountryCard key={country.id} {...country} />)}
         </ul>
     );
 }
 
 CountryList.propTypes = {
-    country: PropTypes.arrayOf(PropTypes.object).isRequired,
+    countries: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

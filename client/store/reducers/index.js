@@ -7,11 +7,11 @@ import country from './country';
 import party from './party';
 
 const rootReducer = combineReducers({
-    alerts,
-    user,
-    country,
-    countries,
-    party
+    alerts: alerts,
+    user: user,
+    country: country,
+    countries: countries,
+    party: party
 });
 
 export default rootReducer;
