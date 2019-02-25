@@ -14,27 +14,20 @@ export default class TimelineListContainer extends Component {
 
     makeTimelineItems = (elections, country) => {
         var elements = [];
-        var electionTypes = []
+        var electionTypes = [];
 
-        elements.push(
-            <div className="box">
-                {
-                    elections.map((election, i) => {
-                        electionTypes.push(election.electionType);
-                        return (
-                            <div>
-                                <TimelineListItem 
-                                    key={JSON.stringify(election)}
-                                    election={election}
-                                    country={country}
-                                />
-                                <hr style={{display: ((i === elections.length - 1) ? "none" : "block")}} />
-                            </div>
-                        )
-                    })
-                }
-            </div>
-        )         
+        elections.map((election, i) => {
+            electionTypes.push(election.electionType);
+            elements.push(
+                <div className="box">
+                    <TimelineListItem 
+                        key={JSON.stringify(election)}
+                        election={election}
+                        country={country}
+                    />
+                </div>
+            );
+        });     
 
         // reduce the election types down
         electionTypes = electionTypes.filter(function(item, pos) {
@@ -46,10 +39,10 @@ export default class TimelineListContainer extends Component {
 
     render() {
         var elections = this.props.elections;
-        var { elements, electionTypes } = this.makeTimelineItems(elections, this.props.country);
+        //var { elements, electionTypes } = this.makeTimelineItems(elections, this.props.country);
 
         return (
-            <TimelineList elements={elements} electionTypes={electionTypes} />
+            <TimelineList elections={elections} country={this.props.country} />
         )
     }
 }

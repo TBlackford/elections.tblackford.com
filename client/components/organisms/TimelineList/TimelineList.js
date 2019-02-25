@@ -15,28 +15,27 @@ import SeatChart from '_molecules/SeatChart';
 ///<li><a>Detailed</a></li>
 
 export default function TimelineList(props) {
-    var { elements, electionTypes } = props;  
+    var { elections, country } = props;  
 
     return (
         <div className="timelinelist">
-            {/*TODO: move this tab section to an organism
-            <div className="tabs is-centered">
-                <ul>
-                    <li className="is-active"><a>All</a></li>
-                    {
-                        electionTypes.map((type, key) => {
-                            return (
-                                <li key={key}><a>{type}</a></li>
-                            )
-                        })
-                    }                    
-                </ul>
-            </div>*/}
-            {elements}
+            {
+                elections.map((election, i) => {
+                    return (
+                        <div key={JSON.stringify(election)} className="box">
+                            <TimelineListItem                                 
+                                election={election}
+                                country={country}
+                            />
+                        </div>
+                    );
+                })
+            }
         </div>
     );
 }
 
 TimelineList.propTypes = {
-    elements: PropTypes.any.isRequired,
+    elections: PropTypes.any.isRequired,
+    country: PropTypes.any.isRequired,
 };

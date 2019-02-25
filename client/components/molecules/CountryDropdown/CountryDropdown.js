@@ -10,8 +10,8 @@ export default class CountryDropdown extends Component {
     static propTypes = {
         open: PropTypes.bool.isRequired,
         closeDropdown: PropTypes.func.isRequired,
-        getCountry: PropTypes.func.isRequired,
-        country: PropTypes.any
+        getCountries: PropTypes.func.isRequired,
+        countries: PropTypes.any
     };
 
     constructor(props) {
@@ -27,10 +27,10 @@ export default class CountryDropdown extends Component {
         window.addEventListener('click', this.dropdownListener);
         window.addEventListener('touchend', this.dropdownListener);
 
-        const { country, getCountry } = this.props;
+        const { countries, getCountries } = this.props;
 
-        if(country.length == 0) {
-            getCountry().then(
+        if(countries.length == 0) {
+            getCountries().then(
                 (countries) => this.setState({countries: countries}),
                 () => console.log("Error")
             );

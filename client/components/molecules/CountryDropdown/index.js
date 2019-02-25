@@ -1,12 +1,12 @@
 import R from '_utils/ramda';
 import { connect } from 'react-redux';
-import { attemptGetCountry } from '_thunks/country';
+import { attemptGetCountries } from '_thunks/countries';
 import CountryDropdown from './CountryDropdown';
 
-const mapStateToProps = R.pick(['country']);
+const mapStateToProps = R.pick(['countries']);
 
 const mapDispatchToProps = dispatch => ({
-    getCountry: () => dispatch(attemptGetCountry()),
+    getCountries: () => dispatch(attemptGetCountries()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CountryDropdown);
