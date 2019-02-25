@@ -6,7 +6,7 @@ import { setElections } from '_actions/elections';
 
 import { dispatchError } from '_utils/api';
 
-export const attemptGetElections = country => dispatch =>
+export const attemptGetElections = country => dispatch => 
     getElections(country)
         .then(data => {
             const elections = R.map(c =>
@@ -17,8 +17,9 @@ export const attemptGetElections = country => dispatch =>
             return elections;
         })
         .catch(dispatchError(dispatch));
+    
 
-export const attemptGetElectionsYear = (country, year) => dispatch =>
+export const attemptGetElectionsYear = (country, year) => dispatch => 
     getElectionsYear(country, year)
         .then(data => {
             const elections = R.map(c =>

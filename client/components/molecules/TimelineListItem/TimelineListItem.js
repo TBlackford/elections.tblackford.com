@@ -5,19 +5,19 @@ import ElectionHeader from '_molecules/ElectionHeader';
 import ResultsBar from '_molecules/ResultsBar';
 
 export default function TimelineListItem(props) {
-    const { electionType, election, year, country } = props;
+    const { election, country } = props;
 
     return (
         <div className="has-text-centered">
             <ElectionHeader 
-                year={year} 
-                electionType={electionType} 
+                year={election.year} 
+                electionType={election.electionType} 
                 votingSystem={election.votingSystem} 
                 isoCode={country.isoCode}
                 isLink={true} />
             <div className="column is-12">
                 <ResultsBar
-                    key={year}
+                    key={election.year}
                     parties={election.totals}
                     showName={true} />
             </div>
@@ -26,8 +26,6 @@ export default function TimelineListItem(props) {
 }
 
 TimelineListItem.propTypes = {
-    electionType: PropTypes.any,
-    year: PropTypes.any,
     election: PropTypes.object,
     country: PropTypes.object,
 }

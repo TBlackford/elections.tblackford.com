@@ -5,7 +5,9 @@ import TimelinePage from './TimelinePage';
 export default class TimelinePageContainer extends Component {
     static propTypes = {
         getCountry: PropTypes.func.isRequired,
+        getElections: PropTypes.func.isRequired,
         country: PropTypes.any,
+        elections: PropTypes.any,
     }
 
     state = {
@@ -13,14 +15,17 @@ export default class TimelinePageContainer extends Component {
     }
 
     setCountry(country) {
-        const { getCountry } = this.props;
+        const { getCountry, getElections } = this.props;
 
         getCountry(country).then(
-            () => {
-                this.setState({ loading: false });
-            },
+            () => this.setState({ loading: false }),
             () => console.log("failure")
         );
+
+        getElections(country).then(
+            () => this.setState({ loading: false }),
+            () => console.log("failure")
+        )
     }
 
     componentDidMount() {     
@@ -28,8 +33,6 @@ export default class TimelinePageContainer extends Component {
     }
 
     render() {
-        console.log(this.props);
-        console.log(this.state);
         return !this.state.loading && (
             <TimelinePage />
         );

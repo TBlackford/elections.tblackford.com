@@ -24,7 +24,7 @@ export default class ResultsBarContainer extends Component {
         var result = 0;
 
         for (var i = 0; i < this.props.parties.length; i++) {
-            result += this.props.parties[i].seats || this.props.parties[i].electoralVotes;
+            result += parseInt(this.props.parties[i].seats) || parseInt(this.props.parties[i].electoralVotes);
         }
 
         return result;
@@ -62,7 +62,7 @@ export default class ResultsBarContainer extends Component {
                         key={JSON.stringify(parties[party])}
                         width={width} 
                         colour={colour} 
-                        number={number}
+                        number={parseInt(number)}
                         text={text}
                     />
                 );
