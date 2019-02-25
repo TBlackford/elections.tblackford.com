@@ -28,7 +28,7 @@ export default class ElectionYearPageContainer extends Component {
 
     render() {
         return !this.state.loading && (
-            <ElectionYearPage election={this.state.election} />
+            <ElectionYearPage election={this.props.election} />
         );
     }
 }
