@@ -1,13 +1,14 @@
 import R from '_utils/ramda';
 import { connect } from 'react-redux';
-import { attemptGetSpecificCountry, attemptGetCountryYear } from '_thunks/country';
+import { attemptGetCountry } from '_thunks/country';
+import { attemptGetElectionsYear } from '_thunks/elections';
 import YearViewPageContainer from './YearViewPageContainer';
 
-const mapStateToProps = R.pick([]);
+const mapStateToProps = R.pick(['country', 'elections']);
 
 const mapDispatchToProps = dispatch => ({
-    getCountry: country => dispatch(attemptGetSpecificCountry(country)),
-    getCountryYear: (country, year) => dispatch(attemptGetCountryYear(country, year)),
+    getCountry: country => dispatch(attemptGetCountry(country)),
+    getElectionsYear: (country, year) => dispatch(attemptGetElectionsYear(country, year))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(YearViewPageContainer);

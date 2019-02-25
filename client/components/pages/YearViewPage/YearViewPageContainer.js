@@ -7,41 +7,35 @@ import { getNameFromCode } from '_utils/isoCodes';
 export default class YearViewPageContainer extends Component {
     static propTypes = {
         getCountry: PropTypes.func.isRequired,
-        getCountryYear: PropTypes.func.isRequired,
+        getElectionsYear: PropTypes.func.isRequired,
+        country: PropTypes.any,
+        elections: PropTypes.any,
     }
 
     state = {
         loading: true,
-        elections: {},
-        year: '',
-        country: {}
     }
 
     componentDidMount() {
-        const { getCountry, getCountryYear } = this.props;
+        const { getCountry, getElectionsYear } = this.props;
         const country = this.props.match.params.country;
         const year = this.props.match.params.year;
 
-        getCountry({country}).then(
-            (country) => {
-                this.setState({country: country});                
-            } 
+        getCountry(country).then(
+            () => this.setState({loading: false})  
         ).catch(() => console.log("Failure"));     
         
-        getCountryYear({ 
-            country: country, 
-            year: year 
-        }).then(
-            (elections) => {
-                this.setState({loading: false, elections: elections, year: year});
-                document.title = "Election Histories | " + getNameFromCode(country) + " " + year;
-            }
+        getElectionsYear(
+            country, 
+            year 
+        ).then(
+            () => this.setState({ loading: false })
         ).catch(() => console.log("Failure"));
     }
 
     render() {
         return (
-            <YearViewPage year={this.state.year} elections={this.state.elections} country={this.state.country} />
+            <YearViewPage elections={this.props.elections} country={this.props.country} />
         )        
     }
 }

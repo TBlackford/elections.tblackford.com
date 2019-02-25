@@ -12,37 +12,9 @@ export default class TimelineListContainer extends Component {
         elections: PropTypes.any
     }
 
-    makeTimelineItems = (elections, country) => {
-        var elements = [];
-        var electionTypes = [];
-
-        elections.map((election, i) => {
-            electionTypes.push(election.electionType);
-            elements.push(
-                <div className="box">
-                    <TimelineListItem 
-                        key={JSON.stringify(election)}
-                        election={election}
-                        country={country}
-                    />
-                </div>
-            );
-        });     
-
-        // reduce the election types down
-        electionTypes = electionTypes.filter(function(item, pos) {
-            return electionTypes.indexOf(item) == pos;
-        });
-
-        return { elements, electionTypes };
-    }
-
     render() {
-        var elections = this.props.elections;
-        //var { elements, electionTypes } = this.makeTimelineItems(elections, this.props.country);
-
         return (
-            <TimelineList elections={elections} country={this.props.country} />
+            <TimelineList elections={this.props.elections} country={this.props.country} />
         )
     }
 }
