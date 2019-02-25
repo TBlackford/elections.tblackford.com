@@ -1,6 +1,6 @@
-export const SET_ELECTION = 'SET_ELECTION';
+export const SET_ELECTION = 'SET_ELECTIONS';
 
 export const setElections = elections => ({
-    type: SET_ELECTION,
+    type: SET_ELECTIONS,
     elections,
 });
