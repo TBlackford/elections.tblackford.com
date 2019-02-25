@@ -7,4 +7,3 @@ export const setCountry = ({name, isoCode, continent, flagUrl}) => ({
     continent,
     flagUrl
 })
-
