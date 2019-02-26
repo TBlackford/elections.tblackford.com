@@ -21,6 +21,36 @@ export default function TimelineList(props) {
         <div className="timelinelist">
             {
                 elections.map((election, i) => {
+
+                    return (
+                        <div key={JSON.stringify(i)} className="box">
+                            {
+                                Object.keys(election).map((year, j) => {
+                                    if(election[year]) {
+                                        return (
+                                            <div key={JSON.stringify(election[year])}>
+                                                <TimelineListItem                                 
+                                                    election={election[year]}
+                                                    country={country}
+                                                />
+                                                <hr style={{display: ((j === Object.keys(election).length - 2) ? "none" : "block")}} />
+                                            </div>
+                                        );
+                                    }
+                                })
+                            }
+                            
+                        </div>
+                    )    
+                })
+            }
+        </div>
+    );
+
+    return (
+        <div className="timelinelist">
+            {
+                elections.map((election, i) => {
                     return (
                         <div key={JSON.stringify(election)} className="box">
                             <TimelineListItem                                 
@@ -28,7 +58,7 @@ export default function TimelineList(props) {
                                 country={country}
                             />
                         </div>
-                    );
+                    );       
                 })
             }
         </div>

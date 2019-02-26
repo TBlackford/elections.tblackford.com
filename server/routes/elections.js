@@ -31,6 +31,8 @@ const groupByElections = (elections) => {
         elections.push(newElections[i]);
     }
 
+    elections.sort().reverse();
+
     return elections;
 }
 
