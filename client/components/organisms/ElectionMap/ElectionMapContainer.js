@@ -12,12 +12,20 @@ export default class ElectionMapContainer extends Component {
 
     state = {
         loading: true,
+        mapType: "d3",
         map: {}
     }
 
     componentDidMount() {
         const { getMap } = this.props;
-        const { country, election } = this.props;
+        var { country, election } = this.props;
+
+        console.log(country);
+        console.log(election);
+
+        if(election["0"]) {
+            election = election["0"]
+        }
 
         getMap(
             country.isoCode,
@@ -30,7 +38,7 @@ export default class ElectionMapContainer extends Component {
 
     render() {
         return !this.state.loading && (
-            <ElectionMap data={this.state.map} />
+            <ElectionMap data={this.state.map} mapType={this.state.mapType} election={this.props.election} />
         )
     }
 }

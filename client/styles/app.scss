@@ -43,3 +43,9 @@
     overflow: hidden;
     position: absolute;
 }
+
+path {
+    pointer-events: all;
+    stroke: #2F2F2F;
+    stroke-width: 1;
+}

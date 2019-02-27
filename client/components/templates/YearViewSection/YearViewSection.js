@@ -19,10 +19,9 @@ export default function YearViewSection(props) {
                         elections.map(election => {
                             return (
                                 <div key={JSON.stringify(election)} className="box">
-                                    <div style={{height: "500px", position: "relative", border: "5px solid black"}}>
+                                    <div style={{height: "100%"}}>
                                         <ElectionMap country={country} election={election} />
-                                    </div>
-                                    
+                                    </div>                                    
                                     <TimelineListItem                                        
                                         country={country}
                                         election={election}
