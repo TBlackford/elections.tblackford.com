@@ -47,6 +47,7 @@ class Year extends Component {
         console.log(this.props.match.params)
         return (
             <div>
+                Year
                 {this.props.match.params.year}
             </div>
         )
@@ -58,6 +59,7 @@ class Electorate extends Component {
         console.log(this.props.match.params)
         return (
             <div>
+                Electorate
                 {this.props.match.params.electorate}
             </div>
         )
@@ -92,11 +94,13 @@ export default function Main(props) {
 
                     <Route path="/:country/info/:year(\d+)/:election/:electorate" component={Year} />  
                     <Route path="/:country/info/:year(\d+)/:election" component={Year} />    
-                    <Route path="/:country/info/:year(\d+)" component={Year} />  
+                    <Route path="/:country/info/:year(\d*(-\d*)?)" component={Year} />  
                       
-                    <Route path="/:country/info/:electorate(\w+)" component={Electorate} />  
-  
-                    <Route path="/:country/" component={Electorate} />   
+                    <Route path="/:country/info/:electorate(\w+)" component={Electorate} />
+
+                    <Route path="/:country" component={Electorate} />
+
+                    <Route path="*" component={LostPage} />
                 </Switch>
             </div>
             <Footer />

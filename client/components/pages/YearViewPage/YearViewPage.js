@@ -11,7 +11,7 @@ import ResultsBar from '_molecules/ResultsBar';
 import SeatChart from '_molecules/SeatChart';
 
 export default function YearViewPage(props) {
-    var { year, elections, country } = props;
+    var { elections, country } = props;
 
     if (!elections) {
         return (
@@ -28,7 +28,7 @@ export default function YearViewPage(props) {
                 </ul>
             </div>
             <div className="has-text-centered">
-                <YearViewSection year={year} elections={elections} country={country} />
+                <YearViewSection elections={elections} country={country} />
             </div>
         </div>
     )
