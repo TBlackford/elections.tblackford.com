@@ -23,8 +23,8 @@ export default class ElectionMapContainer extends Component {
         console.log(country);
         console.log(election);
 
-        if(election["0"]) {
-            election = election["0"]
+        if(election[0]) {
+            election = election[0]
         }
 
         getMap(
@@ -33,12 +33,21 @@ export default class ElectionMapContainer extends Component {
             election.electionType
         ).then(
             (map) => this.setState({ loading: false, map: map })
-        ).catch(() => console.log("Failure"));
+        ).catch(
+            () => console.log("Failure")
+        );     
     }
 
+
     render() {
+        var { election } = this.props;
+        
+        if(election[0]) {
+            election = election[0]
+        }
+
         return !this.state.loading && (
-            <ElectionMap data={this.state.map} mapType={this.state.mapType} election={this.props.election} />
+            <ElectionMap data={this.state.map} mapType={this.state.mapType} election={election} />
         )
     }
 }

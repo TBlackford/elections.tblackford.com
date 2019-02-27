@@ -21,6 +21,8 @@ export default class YearViewPageContainer extends Component {
         const country = this.props.match.params.country;
         const year = this.props.match.params.year;
 
+        console.log(country, year);
+
         getCountry(country).then(
             () => this.setState({loading: false})  
         ).catch(() => console.log("Failure"));     

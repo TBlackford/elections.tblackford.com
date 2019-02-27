@@ -94,8 +94,7 @@ router.get('/:country', (req, res) => {
     });    
 });
 
-router.get('/:country/:year([0-9]{4})', (req, res) => {
-    console.log("zsdfasdf", req.params.year);
+const electionGetCountryYear = (req, res) => {
     // First, find the country
     Country.findOne({
         // making sure that the ISO code is uppercase
@@ -114,7 +113,16 @@ router.get('/:country/:year([0-9]{4})', (req, res) => {
                 send(res, err, elections);
             }).populate('country').sort({year: 1, votingSystem: 1});   
         }
-    });    
+    }); 
+}
+
+// Annoyingly, the regex doesn't work for some reason
+router.get('/:country/:year([0-9]{4}(-[0-9]{2}))', (req, res) => {
+    electionGetCountryYear(req, res);
+});
+
+router.get('/:country/:year([0-9]{4})', (req, res) => {
+    electionGetCountryYear(req, res);   
 });
 
 router.get('/:country/:election', (req, res) => {
