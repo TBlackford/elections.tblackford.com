@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ElectionYearPage from './ElectionYearPage';
 
-export default class ElectionYearPageContainer extends Component {
+class ElectionYearPageContainer extends Component {
     static propTypes = {
         getCountry: PropTypes.func.isRequired,
         getElection: PropTypes.func.isRequired,
@@ -32,3 +32,5 @@ export default class ElectionYearPageContainer extends Component {
         );
     }
 }
+
+export default ElectionYearPageContainer;

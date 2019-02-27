@@ -7,7 +7,7 @@ import {
 export default function map(state = {}, action) {
     switch (action.type) {
         case SET_MAP:
-            return update(state, action.map);
+            return update(state, { $set: action.map });
         default:
             return state;
     }

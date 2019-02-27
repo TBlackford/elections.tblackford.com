@@ -65,6 +65,7 @@
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "font-awesome": "^4.7.0",
+    "geojson-polygon-center": "0.0.0",
     "hex-to-hsl": "^1.0.2",
     "history": "^4.7.2",
     "immutability-helper": "^2.8.1",

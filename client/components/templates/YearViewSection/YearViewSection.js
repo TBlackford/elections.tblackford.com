@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import TimelineList from '_organisms/TimelineList';
 import TimelineListItem from '_molecules/TimelineListItem';
 
-
+import ElectionMap from '_organisms/ElectionMap';
 
 export default function YearViewSection(props) {
     const { elections, country } = props;
@@ -14,10 +14,15 @@ export default function YearViewSection(props) {
             <div className="columns">
                 <div className="column is-12 text-left">
                     {/*<TimelineList country={country} elections={elections} />*/}
+                    
                     {
                         elections.map(election => {
                             return (
                                 <div key={JSON.stringify(election)} className="box">
+                                    <div style={{height: "500px", position: "relative", border: "5px solid black"}}>
+                                        <ElectionMap country={country} election={election} />
+                                    </div>
+                                    
                                     <TimelineListItem                                        
                                         country={country}
                                         election={election}

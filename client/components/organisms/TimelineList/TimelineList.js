@@ -38,8 +38,7 @@ export default function TimelineList(props) {
                                         );
                                     }
                                 })
-                            }
-                            
+                            }                            
                         </div>
                     )    
                 })
