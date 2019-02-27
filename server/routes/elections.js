@@ -24,6 +24,7 @@ const groupByElections = (elections) => {
         }      
         
         newElections[previousYear].push(elections[i]);
+        newElections[previousYear].sort();
     }
 
     elections = [];
@@ -87,7 +88,7 @@ router.get('/:country', (req, res) => {
 
                 // Send the data
                 send(res, err, elections);
-            }).populate('country').sort({ year: -1, votingSystem: 1 });   
+            }).populate('country');   
         }
     });    
 });
@@ -108,7 +109,7 @@ router.get('/:country/:year', (req, res) => {
             }, { _id: 0, __v: 0 }, (err, elections) => {
                 // Send the data
                 send(res, err, elections);
-            }).populate('country').sort({year: -1, votingSystem: 1});   
+            }).populate('country').sort({year: 1, votingSystem: 1});   
         }
     });    
 });

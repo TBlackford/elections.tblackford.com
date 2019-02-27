@@ -17,11 +17,11 @@ import SeatChart from '_molecules/SeatChart';
 export default function TimelineList(props) {
     var { elections, country } = props;  
 
+    // This is computationally expensive and I intend on fixing it with pagination in the future
     return (
         <div className="timelinelist">
             {
                 elections.map((election, i) => {
-
                     return (
                         <div key={JSON.stringify(i)} className="box">
                             {
@@ -42,23 +42,6 @@ export default function TimelineList(props) {
                             
                         </div>
                     )    
-                })
-            }
-        </div>
-    );
-
-    return (
-        <div className="timelinelist">
-            {
-                elections.map((election, i) => {
-                    return (
-                        <div key={JSON.stringify(election)} className="box">
-                            <TimelineListItem                                 
-                                election={election}
-                                country={country}
-                            />
-                        </div>
-                    );       
                 })
             }
         </div>
