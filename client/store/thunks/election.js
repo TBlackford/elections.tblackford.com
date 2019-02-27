@@ -4,7 +4,7 @@ import { setElection } from '_actions/election';
 import { dispatchError } from '_utils/api';
 
 export const attemptGetElection = (country, year, type) => dispatch =>
-getElection(country, year, type)
+    getElection(country, year, type)
         .then(data => {
             const elections = data.elections
             dispatch(

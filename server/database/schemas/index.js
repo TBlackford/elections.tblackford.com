@@ -4,6 +4,7 @@ const Todo = require('./Todo');
 const Country = require('./Country');
 const Party = require('./Party');
 const Election = require('./Election');
+const Map = require('./Map');
 
 module.exports = {
     Session,
@@ -11,5 +12,6 @@ module.exports = {
     Todo,
     Election,
     Country,
+    Map,
     Party
 };

@@ -7,6 +7,7 @@ import country from './country';
 import election from './election';
 import elections from './elections';
 import party from './party';
+import map from './map';
 
 const rootReducer = combineReducers({
     alerts: alerts,
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
     countries: countries,
     election: election,
     elections: elections,
-    party: party
+    party: party,
+    map: map,
 });
 
 export default rootReducer;
