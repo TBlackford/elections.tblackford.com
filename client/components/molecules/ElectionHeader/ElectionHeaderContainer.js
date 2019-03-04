@@ -24,7 +24,7 @@ export default class ElectionHeaderContainer extends Component {
         const { year, electionType, votingSystem, isoCode, isLink } = this.props;
 
         if(isLink) {
-            var yearTag = <Link to={"/" + isoCode.toLowerCase() + "/votes/" + year}>{year}</Link>
+            var yearTag = <a href={"/" + isoCode.toLowerCase() + "/votes/" + year}>{year}</a>
             var splitType = electionType.split(' ').join('_');
             var typeTag = <Link to={"/" + isoCode.toLowerCase() + "/votes/" + year + "/" + splitType}>{electionType}</Link>
         }

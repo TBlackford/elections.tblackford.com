@@ -5,9 +5,4 @@ import CountryCardContainer from './CountryCardContainer';
 
 const mapStateToProps = R.pick([]);
 
-const mapDispatchToProps = dispatch => ({
-    updateCountry: ( id, name, iso_code, continent, flag_url ) => dispatch(attemptUpdateCountry( id, name, iso_code, continent, flag_url )),
-    deleteCountry: id => dispatch(attemptDeleteCountry(id)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(CountryCardContainer);
+export default connect(mapStateToProps)(CountryCardContainer);

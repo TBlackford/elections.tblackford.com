@@ -10,8 +10,6 @@ export default class CountryCardContainer extends Component {
         isoCode: PropTypes.string.isRequired,
         continent: PropTypes.string.isRequired,
         flagUrl: PropTypes.string.isRequired,
-        updateCountry: PropTypes.func.isRequired,
-        deleteCountry: PropTypes.func.isRequired,
     }
 
     render() {

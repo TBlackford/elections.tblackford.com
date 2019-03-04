@@ -14,6 +14,10 @@ export default function ElectionMap(props) {
 
     console.log(election);
 
+    if(!data) {
+        return (<div />)
+    }
+
     const projection = geoAlbersUsa()
     const pathGenerator = geoPath().projection(projection)
     const countries = data.features

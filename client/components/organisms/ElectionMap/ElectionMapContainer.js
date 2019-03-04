@@ -19,10 +19,7 @@ export default class ElectionMapContainer extends Component {
     componentDidMount() {
         const { getMap } = this.props;
         var { country, election } = this.props;
-
-        console.log(country);
-        console.log(election);
-
+        
         if(election[0]) {
             election = election[0]
         }
@@ -41,7 +38,7 @@ export default class ElectionMapContainer extends Component {
 
     render() {
         var { election } = this.props;
-        
+
         if(election[0]) {
             election = election[0]
         }
