@@ -67,7 +67,7 @@ module.exports = {
       _molecules: resolve('client/components/molecules/'),
       _organisms: resolve('client/components/organisms/'),
       _templates: resolve('client/components/templates/'),
-      _pages: resolve('client/components/pages/'),
+      _pages: resolve('client/pages/'),
       _environment: resolve('client/components/environment/'),
       _store: resolve('client/store/'),
       _actions: resolve('client/store/actions/'),

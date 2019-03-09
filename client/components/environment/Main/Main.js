@@ -5,7 +5,6 @@ import Notifications from 'react-notification-system-redux';
 
 import LostPage from '_pages/LostPage';
 import CountryListPage from '_pages/CountryListPage';
-import AppPage from '_pages/AppPage';
 
 import TimelinePage from '_pages/TimelinePage';
 import ElectionYearPage from '_pages/ElectionYearPage';
