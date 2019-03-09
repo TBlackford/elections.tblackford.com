@@ -29,7 +29,7 @@ export default function ElectionMap(props) {
         />)
 
    return (
-        <svg width={959} height={593}>
+        <svg width="100%" height="100%" viewBox="0 0 959 593">
                 {countries}
         </svg>
    )
