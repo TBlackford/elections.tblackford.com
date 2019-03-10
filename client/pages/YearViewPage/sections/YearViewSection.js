@@ -6,7 +6,7 @@ import TimelineListItem from '../components/TimelineListItem';
 import ElectionMap from '../components/ElectionMap';
 
 export default function YearViewSection(props) {
-    const { elections, country } = props;
+    const { elections, country, electorates } = props;
 
     return(
         <div className="section yearview-section">
@@ -19,7 +19,7 @@ export default function YearViewSection(props) {
                             return (
                                 <div key={JSON.stringify(election)} className="box">
                                     <div style={{height: "100%"}}>
-                                        <ElectionMap country={country} election={election} />
+                                        <ElectionMap country={country} election={election} electorates={electorates} />
                                     </div>                                    
                                     <TimelineListItem                                        
                                         country={country}

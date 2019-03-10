@@ -35,16 +35,33 @@ export default class ElectionMapContainer extends Component {
         );     
     }
 
+    convertToObject(electorates) {
+        var newElectorates = {};
+
+        for(var i in electorates) { 
+            newElectorates[electorates[i].name] = electorates[i];
+        }
+
+        return newElectorates;
+    }
 
     render() {
-        var { election } = this.props;
+        var { election, electorates } = this.props;
 
         if(election[0]) {
             election = election[0]
         }
 
+        electorates = this.convertToObject(electorates);
+
+        console.log(electorates);
+
         return !this.state.loading && (
-            <ElectionMap data={this.state.map} mapType={this.state.mapType} election={election} />
+            <ElectionMap 
+                data={this.state.map} 
+                mapType={this.state.mapType} 
+                election={election} 
+                electorates={electorates} />
         )
     }
 }

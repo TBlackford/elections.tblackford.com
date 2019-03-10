@@ -8,8 +8,10 @@ export default class YearViewPageContainer extends Component {
     static propTypes = {
         getCountry: PropTypes.func.isRequired,
         getElectionsYear: PropTypes.func.isRequired,
+        getElectoratesYearType: PropTypes.func.isRequired,
         country: PropTypes.any,
         elections: PropTypes.any,
+        electorates: PropTypes.any,
     }
 
     state = {
@@ -17,12 +19,12 @@ export default class YearViewPageContainer extends Component {
     }
 
     componentDidMount() {
-        const { getCountry, getElectionsYear } = this.props;
+        const { getCountry, getElectionsYear, getElectoratesYearType } = this.props;
         const country = this.props.match.params.country;
         const year = this.props.match.params.year;
 
         getCountry(country).then(
-            () => this.setState({loading: false})  
+            () => this.setState({ loading: false })  
         ).catch(() => console.log("Failure"));     
         
         getElectionsYear(
@@ -31,11 +33,24 @@ export default class YearViewPageContainer extends Component {
         ).then(
             () => this.setState({ loading: false })
         ).catch(() => console.log("Failure"));
+
+        var type = "Presidential";
+
+        getElectoratesYearType(
+            country, 
+            year, 
+            type
+        ).then(
+            () => this.setState({ loading: false })
+        ).catch(() => console.log("Failure"));
     }
 
     render() {
         return (
-            <YearViewPage elections={this.props.elections} country={this.props.country} />
+            <YearViewPage 
+                elections={this.props.elections} 
+                country={this.props.country} 
+                electorates={this.props.electorates} />
         )        
     }
 }

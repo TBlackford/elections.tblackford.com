@@ -7,6 +7,7 @@ const users        = require('./users');
 const todos        = require('./todos');
 const country      = require('./country');
 const elections    = require('./elections');
+const electorates    = require('./electorates');
 const party        = require('./party');
 const map          = require('./map');
 
@@ -18,6 +19,7 @@ router.use('/api/users', users);
 router.use('/api/todos', todos);
 router.use('/api/country', country);
 router.use('/api/elections', elections);
+router.use('/api/electorates', electorates);
 router.use('/api/party', party);
 router.use('/api/map', map);
 

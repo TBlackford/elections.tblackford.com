@@ -10,23 +10,48 @@ import geojson2svg, { Renderer } from 'geojson-to-svg';
 
 
 export default function ElectionMap(props) {
-    const { data, mapType, election } = props;
-
-    console.log(election);
+    const { data, mapType, election, electorates } = props;
 
     if(!data) {
         return (<div />)
     }
 
+    const getMapColour = (type) => {
+        switch(type) {
+            case "Territory": return "#808080";
+            case "Disputed Territory": return "#4d402a";
+        }
+
+        return "#e4e4e4";
+    }
+
     const projection = geoAlbersUsa()
     const pathGenerator = geoPath().projection(projection)
     const countries = data.features
-        .map((d,i) => <path
-            key={'path' + i}
-            d={pathGenerator(d)}
-            fill={"white"}
-            className='countries'
-        />)
+        .map((d,i) => {
+            console.log(d.properties.LABEL)
+            const electorate = electorates[d.properties.LABEL];
+
+            if(electorate.totals.length != 0) {
+                var colour = electorate.totals[0].colour;
+            } else {
+                if(electorate.type.electorate == "State") {
+                    // Assume that they did not vote
+                    var colour = "#404040"
+                } else {
+                    var colour = getMapColour(electorate.type.electorate);
+                }
+            }
+            
+            return (
+                <path
+                    key={'path' + i}
+                    d={pathGenerator(d)}
+                    fill={colour}
+                    className='countries'
+                />
+            );
+        })
 
    return (
         <svg width="100%" height="100%" viewBox="0 0 959 593">
