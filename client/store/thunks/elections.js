@@ -3,6 +3,7 @@ import R from '_utils/ramda';
 
 import {
     getElections,
+    getAllElectionYears,
     getElectionsGroupByYear,
     getElectionsYear,
     getElectionsYearType
@@ -18,6 +19,18 @@ export const attemptGetElections = country => dispatch =>
                 R.omit(['Id'], R.assoc('id', c._id, snakeToCamelCase(c))), data.elections);
 
             dispatch(setElections(elections));
+            
+            return elections;
+        })
+        .catch(dispatchError(dispatch));
+
+export const attemptGetAllElectionYears = country => dispatch => 
+    getAllElectionYears(country)
+        .then(data => {
+            const elections = R.map(c =>
+                R.omit(['Id'], R.assoc('id', c._id, snakeToCamelCase(c))), data.elections);
+                
+            //dispatch(setElections(elections));
             
             return elections;
         })

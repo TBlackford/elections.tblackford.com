@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
 
 import YearViewSection from './sections/YearViewSection';
+import YearNav from './components/YearNav';
 
 import ElectionHeader from '_molecules/ElectionHeader';
 
@@ -21,13 +22,7 @@ export default function YearViewPage(props) {
 
     return (
         <div>
-            <div className="tabs is-centered">
-                <ul>
-                    <li className="is-active"><a>Overview</a></li>
-                    <li><a>Detailed</a></li>
-                </ul>
-            </div>
-            <div className="has-text-centered">
+            <div className="container has-text-centered year-view">
                 <YearViewSection elections={elections} country={country} electorates={electorates} />
             </div>
         </div>

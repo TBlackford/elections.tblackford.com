@@ -26,7 +26,7 @@ export default class ElectionHeaderContainer extends Component {
         if(isLink) {
             var yearTag = <a href={"/" + isoCode.toLowerCase() + "/votes/" + year}>{year}</a>
             var splitType = electionType.split(' ').join('_');
-            var typeTag = <Link to={"/" + isoCode.toLowerCase() + "/votes/" + year + "/" + splitType}>{electionType}</Link>
+            var typeTag = <a href={"/" + isoCode.toLowerCase() + "/votes/" + year + "/" + splitType}>{electionType}</a>
         }
 
         return(

@@ -17,7 +17,7 @@ export default function CountryCard(props) {
     } = props;
 
     var ref = "/" + isoCode.toLowerCase() + "/votes/timeline";
-    var img_src = '/images/' + flagUrl;
+    var img_src = '/images/flags/' + flagUrl;
 
     return (
         

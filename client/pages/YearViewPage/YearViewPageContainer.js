@@ -46,7 +46,7 @@ export default class YearViewPageContainer extends Component {
     }
 
     render() {
-        return (
+        return !this.state.loading && (
             <YearViewPage 
                 elections={this.props.elections} 
                 country={this.props.country} 

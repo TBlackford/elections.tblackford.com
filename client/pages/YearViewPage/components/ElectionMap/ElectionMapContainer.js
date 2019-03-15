@@ -24,15 +24,17 @@ export default class ElectionMapContainer extends Component {
             election = election[0]
         }
 
-        getMap(
-            country.isoCode,
-            election.year,
-            election.electionType
-        ).then(
-            (map) => this.setState({ loading: false, map: map })
-        ).catch(
-            () => console.log("Failure")
-        );     
+        if(Object.keys(this.state.map).length == 0) {
+            getMap(
+                country.isoCode,
+                election.year,
+                election.electionType
+            ).then(
+                (map) => this.setState({ loading: false, map: map })
+            ).catch(
+                () => console.log("Failure")
+            );     
+        }
     }
 
     convertToObject(electorates) {
@@ -53,8 +55,6 @@ export default class ElectionMapContainer extends Component {
         }
 
         electorates = this.convertToObject(electorates);
-
-        console.log(electorates);
 
         return !this.state.loading && (
             <ElectionMap 

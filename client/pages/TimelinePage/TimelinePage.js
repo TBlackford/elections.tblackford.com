@@ -4,7 +4,7 @@ import TimelineSection from './sections/TimelineSection';
 
 export default function Timeline() {
     return ( 
-        <div className="timeline-page page">
+        <div className="timeline-page page container">
             <TimelineSection />
         </div>
     );

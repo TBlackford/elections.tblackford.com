@@ -71,7 +71,7 @@ export default function Main(props) {
         <div className="has-navbar-fixed-top">
             <Notifications notifications={alerts} />
             <Navigation pathname={location.pathname} />
-            <div className="main container">
+            <div className="main">
                 <Switch>
                     <Route exact path="/" component={CountryListPage} />
 
@@ -102,7 +102,7 @@ export default function Main(props) {
                     <Route path="*" component={LostPage} />
                 </Switch>
             </div>
-            <Footer />
+            {/*<Footer />*/}
         </div>
     );
 }

@@ -69,6 +69,39 @@ router.get('/', (req, res) => {
     }).sort({ name: -1 });
 });
 
+router.get('/:country/allyears', (req, res) => {
+    const isoCode = req.params.country.toUpperCase();
+    Election.aggregate([
+        { "$project" : {
+            _id: 1,
+            year: 1,
+            country: 1
+        }},
+        {"$lookup": {
+            from: "countries",
+            localField: "country",
+            foreignField: "_id",
+            as: "country"
+        }},
+        { "$match": {
+            "country.isoCode": isoCode
+        }},
+        { "$sort" : {
+            year: 1
+        }}
+    ], (err, elections) => {
+        const toReturn = [];
+        elections.map(election => {
+            toReturn.push({
+                _id: election._id,
+                year: election.year,
+            });
+        });
+        
+        send(res, err, toReturn);
+    })
+});
+
 router.get('/:country', (req, res) => {
     // First, find the country
     Country.findOne({
@@ -104,7 +137,6 @@ const electionGetCountryYear = (req, res) => {
             res.status(400).send({ message: 'Get country failed', err });
         } else {            
             // Find the election with the found country ID
-            console.log(req.params.year);
             Election.find({
                 country: country._id,
                 year: req.params.year

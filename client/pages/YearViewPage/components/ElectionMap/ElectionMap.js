@@ -29,18 +29,21 @@ export default function ElectionMap(props) {
     const pathGenerator = geoPath().projection(projection)
     const countries = data.features
         .map((d,i) => {
-            console.log(d.properties.LABEL)
             const electorate = electorates[d.properties.LABEL];
 
-            if(electorate.totals.length != 0) {
-                var colour = electorate.totals[0].colour;
-            } else {
-                if(electorate.type.electorate == "State") {
-                    // Assume that they did not vote
-                    var colour = "#404040"
+            if(typeof electorate != 'undefined') {
+                if(electorate.totals.length != 0) {
+                    var colour = electorate.totals[0].colour;
                 } else {
-                    var colour = getMapColour(electorate.type.electorate);
+                    if(electorate.type.electorate == "State") {
+                        // Assume that they did not vote
+                        var colour = "#404040"
+                    } else {
+                        var colour = getMapColour(electorate.type.electorate);
+                    }
                 }
+            } else {
+                var colour = "white"
             }
             
             return (

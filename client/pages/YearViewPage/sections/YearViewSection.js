@@ -9,7 +9,8 @@ export default function YearViewSection(props) {
     const { elections, country, electorates } = props;
 
     return(
-        <div className="section yearview-section">
+        <div className="section yearview-section blackout-on-hover">
+            
             <div className="columns">
                 <div className="column is-12 text-left">
                     {/*<TimelineList country={country} elections={elections} />*/}

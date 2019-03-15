@@ -27,6 +27,10 @@ router.get('/:country/:year/:election', (req, res) => {
         year: req.params.year,
         electionType: req.params.election.split("_").join(" ")
     }, { geojson: 1 },  function(err, map) {
-        send(res, err, map[0].geojson);
+        if(typeof map[0] != 'undefined') {
+            send(res, err, map[0].geojson);
+        } else {
+            send(res, err);
+        }
     });
 });

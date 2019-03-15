@@ -6,6 +6,11 @@ export const getElections = country =>
         .then(handleSuccess)
         .catch(handleError);
 
+export const getAllElectionYears = country =>
+    request.get('/api/elections/' + country + '/allyears')
+        .then(handleSuccess)
+        .catch(handleError);    
+
 export const getElectionsGroupByYear = country =>
     request.get('/api/elections/' + country + "?groupby=year")
         .then(handleSuccess)
