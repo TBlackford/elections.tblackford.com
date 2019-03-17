@@ -82,7 +82,7 @@ export default function Main(props) {
                     {/*App Stuff*/}
                     <Route path="/:country/votes/timeline" component={TimelinePage} />     
                     <Route path="/:country/votes/:year/:election/:electorate" component={ElectionYearPage} />     
-                    <Route path="/:country/votes/:year/:election" component={ElectionYearPage} />  
+                    <Route path="/:country/votes/:year/:election" component={YearViewPage} />  
                     <Route path="/:country/votes/:year" component={YearViewPage} />  
 
                     <Route path="/:country/candidate/all" component={Year} />  

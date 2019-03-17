@@ -24,31 +24,27 @@ export default class YearViewPageContainer extends Component {
         const year = this.props.match.params.year;
 
         getCountry(country).then(
-            () => this.setState({ loading: false })  
-        ).catch(() => console.log("Failure"));     
+            () => this.setState({ loading: true })  
+        ).catch((err) => console.log(err));     
         
-        getElectionsYear(
-            country, 
-            year 
-        ).then(
-            () => this.setState({ loading: false })
-        ).catch(() => console.log("Failure"));
+        getElectionsYear(country, year).then(
+            () => this.setState({ loading: true })
+        ).catch((err) => console.log(err));
 
         var type = "Presidential";
 
-        getElectoratesYearType(
-            country, 
-            year, 
-            type
-        ).then(
+        getElectoratesYearType(country, year, type).then(
             () => this.setState({ loading: false })
-        ).catch(() => console.log("Failure"));
+        ).catch(
+            (err) => console.log(err)
+        );
+
     }
 
     render() {
         return !this.state.loading && (
             <YearViewPage 
-                elections={this.props.elections} 
+                election={this.props.elections[0]} 
                 country={this.props.country} 
                 electorates={this.props.electorates} />
         )        

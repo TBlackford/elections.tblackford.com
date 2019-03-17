@@ -17,6 +17,10 @@ div.main.container {
     bottom: 0;
 }
 
+div.electorate-item-hr:last-of-type {
+    display: none;
+}
+
 $gray: #858E99;
 $blue: #0FA0EB;
 

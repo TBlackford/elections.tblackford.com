@@ -19,10 +19,6 @@ export default class ElectionMapContainer extends Component {
     componentDidMount() {
         const { getMap } = this.props;
         var { country, election } = this.props;
-        
-        if(election[0]) {
-            election = election[0]
-        }
 
         if(Object.keys(this.state.map).length == 0) {
             getMap(
@@ -49,10 +45,6 @@ export default class ElectionMapContainer extends Component {
 
     render() {
         var { election, electorates } = this.props;
-
-        if(election[0]) {
-            election = election[0]
-        }
 
         electorates = this.convertToObject(electorates);
 

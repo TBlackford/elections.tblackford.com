@@ -24,6 +24,7 @@ export default class YearNavContainer extends Component {
     }
 
     render() {
+        return (<div />);
         return !this.state.loading && (
             <YearNav years={this.state.years} currentYear={this.props.elections[0].year} />
         );

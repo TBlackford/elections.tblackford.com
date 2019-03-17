@@ -7,6 +7,8 @@ import ResultsBar from '_molecules/ResultsBar';
 export default function TimelineListItem(props) {
     const { election, country } = props;
 
+    console.log(election);
+
     return (
         <div className="has-text-centered">
             <ElectionHeader 

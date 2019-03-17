@@ -1,5 +1,5 @@
 {
-  "name": "@TBlackford/elections.tblackford.com",
+  "name": "elections.tblackford.com",
   "version": "0.4.5",
   "description": "Election histories of the world",
   "main": "server/index.js",
@@ -20,9 +20,8 @@
     "url": "git+https://github.com/TBlackford/elections.tblackford.com.git"
   },
   "author": {
-    "name": "Rico Rojas",
-    "email": "djizco@yahoo.com",
-    "url": "https://github.com/djizco"
+    "name": "Tom Blackford",
+    "url": "https://github.com/TBlackford"
   },
   "license": "MIT",
   "bugs": {

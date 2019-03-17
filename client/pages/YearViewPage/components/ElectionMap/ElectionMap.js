@@ -31,6 +31,8 @@ export default function ElectionMap(props) {
         .map((d,i) => {
             const electorate = electorates[d.properties.LABEL];
 
+            console.log(d);
+
             if(typeof electorate != 'undefined') {
                 if(electorate.totals.length != 0) {
                     var colour = electorate.totals[0].colour;
